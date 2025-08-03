@@ -1,5 +1,6 @@
 package com.agrocomercial.clientes.context;
 
+import com.agrocomercial.clientes.services.CustomerService;
 import com.agrocomercial.clientes.services.DocumentTypeService;
 import com.agrocomercial.clientes.services.UserService;
 import com.agrocomercial.clientes.views.CustomerView;
@@ -16,6 +17,7 @@ public class AppContext {
     
     private final DocumentTypeService documentTypeService;
     private final UserService userService;
+    private final CustomerService customerService;
 
     public LoginView loginView;
     public MainMenuView mainMenuView;
@@ -26,6 +28,7 @@ public class AppContext {
     private AppContext() {
         documentTypeService = new DocumentTypeService();
         userService = new UserService();
+        customerService = new CustomerService();
 
         loginView = null;
         mainMenuView = null;
@@ -42,7 +45,7 @@ public class AppContext {
 
     private void initViews() {
         loginView = new LoginView(this, userService);
-        mainMenuView = new MainMenuView(this);
+        mainMenuView = new MainMenuView(this, customerService, userService);
         customerView = new CustomerView(documentTypeService);
     }
 }

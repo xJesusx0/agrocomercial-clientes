@@ -7,11 +7,13 @@ import java.util.Optional;
 
 public class UserService {
 
-    List<User> users = List.of(
+    private final List<User> users = List.of(
             new User(1, "jesus", "1234"),
             new User(2, "daniel", "1234"),
             new User(3, "alberto", "1234")
     );
+
+    private User loggedUser;
 
     public boolean authenticateUser(String username, String password){
         Optional<User> user = users.stream()
@@ -20,7 +22,15 @@ public class UserService {
                         u.getPassword().equals(password))
                 .findFirst();
 
-        return user.isPresent();
+        if(user.isPresent()){
+            loggedUser = user.get();
+            return true;
+        }
+
+        return false;
     }
 
+    public User getLoggedUser(){
+        return loggedUser;
+    }
 }
