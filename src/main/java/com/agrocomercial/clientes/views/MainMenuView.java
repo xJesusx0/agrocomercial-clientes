@@ -89,7 +89,10 @@ public class MainMenuView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clientsRedirectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsRedirectionActionPerformed
+        validateRedirectToCustomerViews(localAppContext.customerView);
+    }//GEN-LAST:event_clientsRedirectionActionPerformed
 
+    private void validateRedirectToCustomerViews(JFrame view){
         Customer customer = customerService.findByUserId(
                 userService.getLoggedUser().getId()
         );
@@ -99,11 +102,8 @@ public class MainMenuView extends javax.swing.JFrame {
             return;
         }
 
-        WindowUtils.closeAndShowPanel(this, localAppContext.customerView);
-
-
-    }//GEN-LAST:event_clientsRedirectionActionPerformed
-
+        WindowUtils.closeAndShowPanel(this, view);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clientsRedirection;
