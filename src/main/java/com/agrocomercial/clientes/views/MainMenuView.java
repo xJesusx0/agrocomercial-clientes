@@ -49,7 +49,8 @@ public class MainMenuView extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
-        clientsRedirection = new javax.swing.JButton();
+        customerRedirection = new javax.swing.JButton();
+        ordersRedirection = new javax.swing.JButton();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -63,10 +64,17 @@ public class MainMenuView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        clientsRedirection.setText("clientes");
-        clientsRedirection.addActionListener(new java.awt.event.ActionListener() {
+        customerRedirection.setText("clientes");
+        customerRedirection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                clientsRedirectionActionPerformed(evt);
+                customerRedirectionActionPerformed(evt);
+            }
+        });
+
+        ordersRedirection.setText("ordenes");
+        ordersRedirection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ordersRedirectionActionPerformed(evt);
             }
         });
 
@@ -75,22 +83,30 @@ public class MainMenuView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(clientsRedirection)
-                .addGap(0, 328, Short.MAX_VALUE))
+                .addComponent(customerRedirection)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ordersRedirection)
+                .addGap(0, 240, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(clientsRedirection)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerRedirection)
+                    .addComponent(ordersRedirection))
                 .addGap(0, 277, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clientsRedirectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsRedirectionActionPerformed
-        validateRedirectToCustomerViews(localAppContext.customerView);
-    }//GEN-LAST:event_clientsRedirectionActionPerformed
+    private void customerRedirectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerRedirectionActionPerformed
+        validateRedirectToCustomerViews(localAppContext.getCustomerView());
+    }//GEN-LAST:event_customerRedirectionActionPerformed
+
+    private void ordersRedirectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersRedirectionActionPerformed
+        validateRedirectToCustomerViews(localAppContext.getOrderView());
+    }//GEN-LAST:event_ordersRedirectionActionPerformed
 
     private void validateRedirectToCustomerViews(JFrame view){
         Customer customer = customerService.findByUserId(
@@ -106,12 +122,13 @@ public class MainMenuView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton clientsRedirection;
+    private javax.swing.JButton customerRedirection;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton ordersRedirection;
     // End of variables declaration//GEN-END:variables
 }

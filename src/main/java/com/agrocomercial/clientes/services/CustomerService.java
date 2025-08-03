@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.agrocomercial.clientes.utils.ServiceUtils.getLastId;
+
 public class CustomerService {
 
     private final List<Customer> customers = new ArrayList<>();
@@ -36,14 +38,11 @@ public class CustomerService {
     }
 
     public Customer save(Customer customer) {
-        Integer id = getLastId();
+        Integer id = getLastId(this.customers);
         customer.setId(id);
 
         customers.add(customer);
         return customer;
     }
 
-    private Integer getLastId(){
-        return customers.getLast().getId();
-    }
 }
