@@ -122,7 +122,7 @@ public class LoginView extends JFrame {
 
         if(userService.authenticateUser(username, password)){
             JOptionPane.showMessageDialog(null, "Bienvenido " + username);
-            WindowUtils.closeAndShowPanel(this, localAppContext.mainMenuView);
+            WindowUtils.closeAndShowPanel(this, localAppContext.getMainMenuView());
             return;
         }
 

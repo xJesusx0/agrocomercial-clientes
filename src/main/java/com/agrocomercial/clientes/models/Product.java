@@ -41,4 +41,9 @@ public class Product extends BaseEntity {
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return name + " $" + price;
+    }
 }
