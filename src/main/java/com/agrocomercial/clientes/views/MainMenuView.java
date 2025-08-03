@@ -5,7 +5,13 @@
 package com.agrocomercial.clientes.views;
 
 import com.agrocomercial.clientes.context.AppContext;
+import com.agrocomercial.clientes.models.Customer;
+import com.agrocomercial.clientes.models.User;
+import com.agrocomercial.clientes.services.CustomerService;
+import com.agrocomercial.clientes.services.UserService;
 import com.agrocomercial.clientes.utils.WindowUtils;
+
+import javax.swing.*;
 
 /**
  *
@@ -15,12 +21,17 @@ public class MainMenuView extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainMenuView.class.getName());
     private final transient AppContext localAppContext;
+    private final transient CustomerService customerService;
+    private final transient UserService userService;
+
     /**
      * Creates new form MainMenuFrame
      */
-    public MainMenuView(AppContext localAppContext) {
+    public MainMenuView(AppContext localAppContext, CustomerService customerService, UserService userService) {
         initComponents();
         this.localAppContext = localAppContext;
+        this.customerService = customerService;
+        this.userService = userService;
     }
 
     /**
@@ -78,7 +89,18 @@ public class MainMenuView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void clientsRedirectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsRedirectionActionPerformed
+
+        Customer customer = customerService.findByUserId(
+                userService.getLoggedUser().getId()
+        );
+
+        if(customer == null){
+            JOptionPane.showMessageDialog(null, "El usuario no tiene acceso a esta vista");
+            return;
+        }
+
         WindowUtils.closeAndShowPanel(this, localAppContext.customerView);
+
 
     }//GEN-LAST:event_clientsRedirectionActionPerformed
 
