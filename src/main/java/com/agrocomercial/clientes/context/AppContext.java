@@ -58,7 +58,7 @@ public class AppContext {
         productService = new ProductService();
         orderProductService = new OrderProductService();
 
-        addProductToOrderController = new AddProductToOrderController(orderProductService, productService, orderService);
+        addProductToOrderController = new AddProductToOrderController(orderProductService, productService, orderService, userService, customerService);
 
         loginView = null;
         mainMenuView = null;
