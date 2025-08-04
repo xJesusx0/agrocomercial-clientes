@@ -3,6 +3,7 @@ package com.agrocomercial.clientes.models;
 public class OrderProduct extends BaseEntity {
 
     private Integer quantity;
+    private Double subtotal;
 
     // FK
     private Integer idOrder;
@@ -32,5 +33,13 @@ public class OrderProduct extends BaseEntity {
 
     public void setIdProduct(Integer idProduct) {
         this.idProduct = idProduct;
+    }
+
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
     }
 }

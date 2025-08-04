@@ -5,20 +5,37 @@
 package com.agrocomercial.clientes.views;
 
 import com.agrocomercial.clientes.context.AppContext;
+import com.agrocomercial.clientes.controller.AddProductToOrderController;
+import com.agrocomercial.clientes.events.OrderProductEventListener;
+import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.WindowUtils;
+
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jesus
  */
-public class OrderView extends javax.swing.JFrame {
+public class OrderView extends javax.swing.JFrame implements OrderProductEventListener {
+    @Override
+    public void onProductAdded(Product product, Integer quantity, Double subtotal) {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) productTable.getModel();
+
+        defaultTableModel.addRow(new Object[]{product.getName(), quantity, subtotal});
+    }
 
     private final transient AppContext localAppContext;
+    private final transient AddProductToOrderController controller;
 
-    public OrderView(AppContext appContext) {
+    public OrderView(AppContext appContext, AddProductToOrderController controller) {
         initComponents();
-
+        this.controller = controller;
         this.localAppContext = appContext;
+        subscribeToOrderProductEvent();
+    }
+
+    private void subscribeToOrderProductEvent(){
+        controller.subscribe(this);
     }
 
     /**
@@ -33,7 +50,7 @@ public class OrderView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         orderNumberField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        productTable = new javax.swing.JTable();
         addProductButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
 
@@ -41,12 +58,9 @@ public class OrderView extends javax.swing.JFrame {
 
         jLabel1.setText("Numero de orden");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        productTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Producto", "Cantidad", "Total"
@@ -67,7 +81,7 @@ public class OrderView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(productTable);
 
         addProductButton.setText("añadir producto");
         addProductButton.addActionListener(new java.awt.event.ActionListener() {
@@ -124,21 +138,21 @@ public class OrderView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductButtonActionPerformed
+    private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
         WindowUtils.closeAndShowPanel(this, localAppContext.getAddProductToOrderView());
-    }//GEN-LAST:event_addProductButtonActionPerformed
+    }
 
-    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }//GEN-LAST:event_saveButtonActionPerformed
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProductButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField orderNumberField;
+    private javax.swing.JTable productTable;
     private javax.swing.JButton saveButton;
     // End of variables declaration//GEN-END:variables
 }

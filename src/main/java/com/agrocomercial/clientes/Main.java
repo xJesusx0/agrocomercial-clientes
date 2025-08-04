@@ -11,8 +11,9 @@ import com.agrocomercial.clientes.context.AppContext;
 public class Main {
     public static void main(String[] args) {
         AppContext appContext = AppContext.getInstance();
-        appContext.loginView.setLocationRelativeTo(null);
-        appContext.loginView.setVisible(true);
-        appContext.loginView.setResizable(false);
+        var view = appContext.getOrderView();
+        view.setLocationRelativeTo(null);
+        view.setVisible(true);
+        view.setResizable(false);
     }
 }

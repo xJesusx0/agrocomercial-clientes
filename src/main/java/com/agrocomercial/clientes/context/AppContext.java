@@ -77,7 +77,7 @@ public class AppContext {
         loginView = new LoginView(this, userService);
         mainMenuView = new MainMenuView(this, customerService, userService);
         customerView = new CustomerView(documentTypeService);
-        orderView = new OrderView(this);
+        orderView = new OrderView(this, addProductToOrderController);
         addProductToOrderView = new AddProductToOrderView(this, addProductToOrderController);
     }
 }
