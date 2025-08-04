@@ -2,12 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.agrocomercial.clientes.views;
+package com.agrocomercial.clientes.views.orders;
 
 import com.agrocomercial.clientes.context.AppContext;
 import com.agrocomercial.clientes.controller.AddProductToOrderController;
 import com.agrocomercial.clientes.events.OrderProductEventListener;
-import com.agrocomercial.clientes.models.Order;
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.WindowUtils;
 
@@ -18,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jesus
  */
-public class OrderView extends javax.swing.JFrame implements OrderProductEventListener {
+public class CreateOrderView extends javax.swing.JFrame implements OrderProductEventListener {
     @Override
     public void onProductAdded(Product product, Integer quantity, Double subtotal) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) productTable.getModel();
@@ -29,7 +28,7 @@ public class OrderView extends javax.swing.JFrame implements OrderProductEventLi
     private final transient AppContext localAppContext;
     private final transient AddProductToOrderController controller;
 
-    public OrderView(AppContext appContext, AddProductToOrderController controller) {
+    public CreateOrderView(AppContext appContext, AddProductToOrderController controller) {
         initComponents();
         this.controller = controller;
         this.localAppContext = appContext;
@@ -67,19 +66,17 @@ public class OrderView extends javax.swing.JFrame implements OrderProductEventLi
                 "Producto", "Cantidad", "Total"
             }
         ) {
-            final Class[] types = new Class [] {
+            Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
-            final boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean [] {
                 false, false, false
             };
 
-            @Override
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
 
-            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -87,10 +84,18 @@ public class OrderView extends javax.swing.JFrame implements OrderProductEventLi
         jScrollPane1.setViewportView(productTable);
 
         addProductButton.setText("añadir producto");
-        addProductButton.addActionListener(this::addProductButtonActionPerformed);
+        addProductButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductButtonActionPerformed(evt);
+            }
+        });
 
         saveButton.setText("Guardar");
-        saveButton.addActionListener(this::saveButtonActionPerformed);
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

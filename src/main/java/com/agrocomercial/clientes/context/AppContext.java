@@ -3,6 +3,8 @@ package com.agrocomercial.clientes.context;
 import com.agrocomercial.clientes.controller.AddProductToOrderController;
 import com.agrocomercial.clientes.services.*;
 import com.agrocomercial.clientes.views.*;
+import com.agrocomercial.clientes.views.orders.AddProductToOrderView;
+import com.agrocomercial.clientes.views.orders.CreateOrderView;
 
 /**
  * Clase usada para manejar el ciclo de vida
@@ -25,7 +27,7 @@ public class AppContext {
     private LoginView loginView;
     private MainMenuView mainMenuView;
     private CustomerView customerView;
-    private OrderView orderView;
+    private CreateOrderView orderView;
     private AddProductToOrderView addProductToOrderView;
 
     private static AppContext instance;
@@ -42,7 +44,7 @@ public class AppContext {
         return mainMenuView;
     }
 
-    public OrderView getOrderView() {
+    public CreateOrderView getOrderView() {
         return orderView;
     }
 
@@ -77,7 +79,7 @@ public class AppContext {
         loginView = new LoginView(this, userService);
         mainMenuView = new MainMenuView(this, customerService, userService);
         customerView = new CustomerView(documentTypeService);
-        orderView = new OrderView(this, addProductToOrderController);
+        orderView = new CreateOrderView(this, addProductToOrderController);
         addProductToOrderView = new AddProductToOrderView(this, addProductToOrderController);
     }
 }
