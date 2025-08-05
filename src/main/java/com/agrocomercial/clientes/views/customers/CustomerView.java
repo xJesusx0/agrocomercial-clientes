@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.agrocomercial.clientes.views;
+package com.agrocomercial.clientes.views.customers;
 
 import com.agrocomercial.clientes.models.DocumentType;
 import com.agrocomercial.clientes.services.DocumentTypeService;

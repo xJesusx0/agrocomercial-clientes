@@ -1,8 +1,15 @@
 package com.agrocomercial.clientes.context;
 
-import com.agrocomercial.clientes.controller.AddProductToOrderController;
+import com.agrocomercial.clientes.controller.auth.AuthController;
+import com.agrocomercial.clientes.controller.OrderProductController;
+import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.services.*;
-import com.agrocomercial.clientes.views.*;
+import com.agrocomercial.clientes.views.customers.CustomerView;
+import com.agrocomercial.clientes.views.auth.LoginView;
+import com.agrocomercial.clientes.views.main.MainMenuView;
+import com.agrocomercial.clientes.views.orders.AddProductToOrderView;
+import com.agrocomercial.clientes.views.orders.CreateOrderView;
+import com.agrocomercial.clientes.views.orders.ListOrdersView;
 
 /**
  * Clase usada para manejar el ciclo de vida
@@ -12,7 +19,9 @@ import com.agrocomercial.clientes.views.*;
  */
 @SuppressWarnings("java:S6548")
 public class AppContext {
-    
+
+    private final LoggedUser loggedUser = new LoggedUser();
+
     private final DocumentTypeService documentTypeService;
     private final UserService userService;
     private final CustomerService customerService;
@@ -20,15 +29,25 @@ public class AppContext {
     private final ProductService productService;
     private final OrderService orderService;
 
-    private final AddProductToOrderController addProductToOrderController;
+    private final OrderProductController orderProductController;
+    private final AuthController authController;
 
     private LoginView loginView;
     private MainMenuView mainMenuView;
     private CustomerView customerView;
-    private OrderView orderView;
+    private CreateOrderView orderView;
     private AddProductToOrderView addProductToOrderView;
+    private ListOrdersView listOrdersView;
 
     private static AppContext instance;
+
+    public ListOrdersView getListOrdersView() {
+        if(listOrdersView == null){
+            listOrdersView = new ListOrdersView(this, orderProductController);
+        }
+
+        return listOrdersView;
+    }
 
     public LoginView getLoginView() {
         return loginView;
@@ -42,7 +61,7 @@ public class AppContext {
         return mainMenuView;
     }
 
-    public OrderView getOrderView() {
+    public CreateOrderView getCreateOrderView() {
         return orderView;
     }
 
@@ -58,7 +77,8 @@ public class AppContext {
         productService = new ProductService();
         orderProductService = new OrderProductService();
 
-        addProductToOrderController = new AddProductToOrderController(orderProductService, productService, orderService);
+        orderProductController = new OrderProductController(orderProductService, productService, orderService, userService, customerService, loggedUser);
+        authController = new AuthController(userService, customerService, loggedUser);
 
         loginView = null;
         mainMenuView = null;
@@ -73,11 +93,15 @@ public class AppContext {
         return instance;
     }
 
+    public LoggedUser getLoggedUser() {
+        return loggedUser;
+    }
+
     private void initViews() {
-        loginView = new LoginView(this, userService);
-        mainMenuView = new MainMenuView(this, customerService, userService);
+        loginView = new LoginView(this, authController);
+        mainMenuView = new MainMenuView(this);
         customerView = new CustomerView(documentTypeService);
-        orderView = new OrderView(this);
-        addProductToOrderView = new AddProductToOrderView(this, addProductToOrderController);
+        orderView = new CreateOrderView(this, orderProductController);
+        addProductToOrderView = new AddProductToOrderView(this, orderProductController);
     }
 }

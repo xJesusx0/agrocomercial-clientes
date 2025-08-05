@@ -3,19 +3,30 @@ package com.agrocomercial.clientes.models;
 public class Order extends BaseEntity {
 
     private Long orderNumber;
+    private Double subtotal;
 
     // FK
     private Integer idCustomer;
 
-    public Order(Long orderNumber, Integer idCustomer) {
+    public Order(Long orderNumber, Integer idCustomer, Double subtotal) {
         this.orderNumber = orderNumber;
         this.idCustomer = idCustomer;
+        this.subtotal = subtotal;
     }
 
-    public Order(Integer id, Long orderNumber, Integer idCustomer) {
+    public Order(Integer id, Long orderNumber, Integer idCustomer, Double subtotal) {
         super(id);
         this.orderNumber = orderNumber;
         this.idCustomer = idCustomer;
+        this.subtotal = subtotal;
+    }
+
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
     }
 
     public Long getOrderNumber() {

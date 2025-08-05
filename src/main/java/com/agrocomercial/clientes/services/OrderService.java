@@ -18,6 +18,10 @@ public class OrderService {
         return order;
     }
 
-
+    public List<Order> findByCustomerId(Integer customerId) {
+        return orderList.stream()
+                .filter(order -> order.getIdCustomer().equals(customerId))
+                .toList();
+    }
 
 }
