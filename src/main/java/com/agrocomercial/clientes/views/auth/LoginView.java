@@ -1,4 +1,4 @@
-package com.agrocomercial.clientes.views;
+package com.agrocomercial.clientes.views.auth;
 
 import com.agrocomercial.clientes.context.AppContext;
 import com.agrocomercial.clientes.services.UserService;

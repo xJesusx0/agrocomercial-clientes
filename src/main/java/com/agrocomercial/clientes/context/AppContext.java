@@ -2,7 +2,9 @@ package com.agrocomercial.clientes.context;
 
 import com.agrocomercial.clientes.controller.OrderController;
 import com.agrocomercial.clientes.services.*;
-import com.agrocomercial.clientes.views.*;
+import com.agrocomercial.clientes.views.customers.CustomerView;
+import com.agrocomercial.clientes.views.auth.LoginView;
+import com.agrocomercial.clientes.views.main.MainMenuView;
 import com.agrocomercial.clientes.views.orders.AddProductToOrderView;
 import com.agrocomercial.clientes.views.orders.CreateOrderView;
 import com.agrocomercial.clientes.views.orders.ListOrdersView;
