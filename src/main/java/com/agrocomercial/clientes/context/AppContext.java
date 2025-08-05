@@ -1,7 +1,7 @@
 package com.agrocomercial.clientes.context;
 
 import com.agrocomercial.clientes.controller.auth.AuthController;
-import com.agrocomercial.clientes.controller.OrderProductController;
+import com.agrocomercial.clientes.controller.orders.OrderProductController;
 import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.services.*;
 import com.agrocomercial.clientes.views.customers.CustomerView;

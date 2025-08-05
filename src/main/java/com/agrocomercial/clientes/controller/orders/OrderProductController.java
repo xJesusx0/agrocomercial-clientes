@@ -1,4 +1,4 @@
-package com.agrocomercial.clientes.controller;
+package com.agrocomercial.clientes.controller.orders;
 
 import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.events.OrderCreatedEventListener;

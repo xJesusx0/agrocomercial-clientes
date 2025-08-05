@@ -5,7 +5,7 @@
 package com.agrocomercial.clientes.views.orders;
 
 import com.agrocomercial.clientes.context.AppContext;
-import com.agrocomercial.clientes.controller.OrderProductController;
+import com.agrocomercial.clientes.controller.orders.OrderProductController;
 import com.agrocomercial.clientes.events.OrderCreatedEventListener;
 import com.agrocomercial.clientes.models.Order;
 import com.agrocomercial.clientes.utils.WindowUtils;
