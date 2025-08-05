@@ -1,13 +1,15 @@
 package com.agrocomercial.clientes.controller;
 
-import com.agrocomercial.clientes.events.OrderProductEventListener;
+import com.agrocomercial.clientes.events.OrderCreatedEventListener;
+import com.agrocomercial.clientes.events.ProductAddedToOrderEventListener;
 import com.agrocomercial.clientes.models.*;
 import com.agrocomercial.clientes.services.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
-public class AddProductToOrderController {
+public class OrderController {
 
     private final OrderProductService orderProductService;
     private final ProductService productService;
@@ -15,11 +17,12 @@ public class AddProductToOrderController {
     private final UserService userService;
     private final CustomerService customerService;
 
-    private final List<OrderProductEventListener> listeners = new ArrayList<>();
+    private final List<ProductAddedToOrderEventListener> productAddedToOrderEventListeners = new ArrayList<>();
+    private final List<OrderCreatedEventListener> orderCreatedEventListeners = new ArrayList<>();
 
     private final List<OrderProduct> orderProductListToSave = new ArrayList<>();
 
-    public AddProductToOrderController(OrderProductService orderProductService, ProductService productService, OrderService orderService, UserService userService, CustomerService customerService) {
+    public OrderController(OrderProductService orderProductService, ProductService productService, OrderService orderService, UserService userService, CustomerService customerService) {
         this.orderProductService = orderProductService;
         this.productService = productService;
         this.orderService = orderService;
@@ -29,7 +32,10 @@ public class AddProductToOrderController {
 
     public void saveOrder(Long orderNumber){
         Integer customerId = getCustomerId();
-        Order order = new Order(orderNumber, customerId);
+
+        AtomicReference<Double> subtotal = new AtomicReference<>(0.0);
+        orderProductListToSave.forEach(orderProduct -> subtotal.updateAndGet(v -> v + orderProduct.getSubtotal()));
+        Order order = new Order(orderNumber, customerId, subtotal.get());
         order.setIdCustomer(customerId);
         order = orderService.save(order);
 
@@ -40,6 +46,7 @@ public class AddProductToOrderController {
         );
 
         orderProductService.saveAll(orderProductListToSave);
+        emitOnOrderCreated(order);
     }
 
     private Integer getCustomerId(){
@@ -63,12 +70,25 @@ public class AddProductToOrderController {
         return productService.findAll();
     }
 
-    public void emitOnProductAdded(Product product, Integer quantity, Double subtotal){
-        listeners.forEach(listener -> listener.onProductAdded(product, quantity, subtotal));
+    public List<Order> getOrders(){
+        Integer customerId = getCustomerId();
+        return orderService.findByCustomerId(customerId);
     }
 
-    public void subscribe(OrderProductEventListener listener){
-        listeners.add(listener);
+    public void emitOnProductAdded(Product product, Integer quantity, Double subtotal){
+        productAddedToOrderEventListeners.forEach(listener -> listener.onProductAdded(product, quantity, subtotal));
+    }
+
+    public void emitOnOrderCreated(Order order){
+        orderCreatedEventListeners.forEach(listener -> listener.onOrderCreated(order));
+    }
+
+    public void subscribeToProductAddedToOrder(ProductAddedToOrderEventListener listener){
+        productAddedToOrderEventListeners.add(listener);
+    }
+
+    public void subscribeToOrderCreated(OrderCreatedEventListener listener){
+        orderCreatedEventListeners.add(listener);
     }
 }
 

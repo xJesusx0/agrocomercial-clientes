@@ -1,6 +1,7 @@
 package com.agrocomercial.clientes.utils;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 public class WindowUtils {
 
@@ -12,4 +13,7 @@ public class WindowUtils {
         frameToOpen.setVisible(true);
     }
 
+    public static DefaultTableModel getTableModel(JTable table){
+        return (DefaultTableModel) table.getModel();
+    }
 }

@@ -5,19 +5,21 @@
 package com.agrocomercial.clientes.views.orders;
 
 import com.agrocomercial.clientes.context.AppContext;
-import com.agrocomercial.clientes.controller.AddProductToOrderController;
-import com.agrocomercial.clientes.events.OrderProductEventListener;
+import com.agrocomercial.clientes.controller.OrderController;
+import com.agrocomercial.clientes.events.ProductAddedToOrderEventListener;
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.WindowUtils;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
+import static com.agrocomercial.clientes.utils.WindowUtils.getTableModel;
+
 /**
  *
  * @author jesus
  */
-public class CreateOrderView extends javax.swing.JFrame implements OrderProductEventListener {
+public class CreateOrderView extends javax.swing.JFrame implements ProductAddedToOrderEventListener {
     @Override
     public void onProductAdded(Product product, Integer quantity, Double subtotal) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) productTable.getModel();
@@ -26,9 +28,9 @@ public class CreateOrderView extends javax.swing.JFrame implements OrderProductE
     }
 
     private final transient AppContext localAppContext;
-    private final transient AddProductToOrderController controller;
+    private final transient OrderController controller;
 
-    public CreateOrderView(AppContext appContext, AddProductToOrderController controller) {
+    public CreateOrderView(AppContext appContext, OrderController controller) {
         initComponents();
         this.controller = controller;
         this.localAppContext = appContext;
@@ -36,7 +38,7 @@ public class CreateOrderView extends javax.swing.JFrame implements OrderProductE
     }
 
     private void subscribeToOrderProductEvent(){
-        controller.subscribe(this);
+        controller.subscribeToProductAddedToOrder(this);
     }
 
     /**
@@ -53,6 +55,7 @@ public class CreateOrderView extends javax.swing.JFrame implements OrderProductE
         productTable = new javax.swing.JTable();
         addProductButton = new javax.swing.JButton();
         saveButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -97,6 +100,13 @@ public class CreateOrderView extends javax.swing.JFrame implements OrderProductE
             }
         });
 
+        cancelButton.setText("cancelar");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -114,6 +124,8 @@ public class CreateOrderView extends javax.swing.JFrame implements OrderProductE
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(addProductButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(cancelButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(saveButton)
                                 .addGap(23, 23, 23)))))
@@ -131,12 +143,18 @@ public class CreateOrderView extends javax.swing.JFrame implements OrderProductE
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addProductButton)
-                    .addComponent(saveButton))
+                    .addComponent(saveButton)
+                    .addComponent(cancelButton))
                 .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        WindowUtils.closeAndShowPanel(this, localAppContext.getListOrdersView());
+
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void addProductButtonActionPerformed(java.awt.event.ActionEvent evt) {
         WindowUtils.closeAndShowPanel(this, localAppContext.getAddProductToOrderView());
@@ -169,6 +187,7 @@ public class CreateOrderView extends javax.swing.JFrame implements OrderProductE
         controller.saveOrder(orderNumber);
         JOptionPane.showMessageDialog(null, "Orden creada correctamente");
         clearFields();
+        WindowUtils.closeAndShowPanel(this, localAppContext.getListOrdersView());
     }
 
     private void clearFields(){
@@ -181,11 +200,12 @@ public class CreateOrderView extends javax.swing.JFrame implements OrderProductE
     }
 
     private DefaultTableModel getProductsTableModel(){
-        return (DefaultTableModel) productTable.getModel();
+        return getTableModel(productTable);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProductButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField orderNumberField;

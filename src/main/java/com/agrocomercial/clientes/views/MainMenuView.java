@@ -105,7 +105,7 @@ public class MainMenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_customerRedirectionActionPerformed
 
     private void ordersRedirectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ordersRedirectionActionPerformed
-        validateRedirectToCustomerViews(localAppContext.getOrderView());
+        validateRedirectToCustomerViews(localAppContext.getListOrdersView());
     }//GEN-LAST:event_ordersRedirectionActionPerformed
 
     private void validateRedirectToCustomerViews(JFrame view){
