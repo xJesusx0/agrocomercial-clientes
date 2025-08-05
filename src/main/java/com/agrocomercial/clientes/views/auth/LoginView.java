@@ -1,7 +1,7 @@
 package com.agrocomercial.clientes.views.auth;
 
 import com.agrocomercial.clientes.context.AppContext;
-import com.agrocomercial.clientes.services.UserService;
+import com.agrocomercial.clientes.controller.auth.AuthController;
 import com.agrocomercial.clientes.utils.WindowUtils;
 
 import javax.swing.*;
@@ -18,15 +18,15 @@ import javax.swing.*;
 public class LoginView extends JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginView.class.getName());
-    private final transient UserService userService;
+    private final transient AuthController authController;
     private final transient AppContext localAppContext;
 
     /**
      * Creates new form MainFrame
      */
-    public LoginView(AppContext localAppContext, UserService userService) {
+    public LoginView(AppContext localAppContext, AuthController authController) {
         initComponents();
-        this.userService = userService;
+        this.authController = authController;
         this.localAppContext = localAppContext;
     }
 
@@ -49,12 +49,6 @@ public class LoginView extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Usuario");
-
-        usernameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                usernameFieldActionPerformed(evt);
-            }
-        });
 
         jLabel2.setText("Contraseña");
 
@@ -110,9 +104,6 @@ public class LoginView extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         
@@ -120,7 +111,7 @@ public class LoginView extends JFrame {
         String password = new String(passwordArray);
         String username = usernameField.getText();
 
-        if(userService.authenticateUser(username, password)){
+        if(authController.authenticateUser(username, password) != null){
             JOptionPane.showMessageDialog(null, "Bienvenido " + username);
             WindowUtils.closeAndShowPanel(this, localAppContext.getMainMenuView());
             return;

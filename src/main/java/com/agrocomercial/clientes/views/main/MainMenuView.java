@@ -5,9 +5,7 @@
 package com.agrocomercial.clientes.views.main;
 
 import com.agrocomercial.clientes.context.AppContext;
-import com.agrocomercial.clientes.models.Customer;
-import com.agrocomercial.clientes.services.CustomerService;
-import com.agrocomercial.clientes.services.UserService;
+import com.agrocomercial.clientes.utils.Roles;
 import com.agrocomercial.clientes.utils.WindowUtils;
 
 import javax.swing.*;
@@ -20,17 +18,12 @@ public class MainMenuView extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainMenuView.class.getName());
     private final transient AppContext localAppContext;
-    private final transient CustomerService customerService;
-    private final transient UserService userService;
-
     /**
      * Creates new form MainMenuFrame
      */
-    public MainMenuView(AppContext localAppContext, CustomerService customerService, UserService userService) {
+    public MainMenuView(AppContext localAppContext) {
         initComponents();
         this.localAppContext = localAppContext;
-        this.customerService = customerService;
-        this.userService = userService;
     }
 
     /**
@@ -108,11 +101,11 @@ public class MainMenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_ordersRedirectionActionPerformed
 
     private void validateRedirectToCustomerViews(JFrame view){
-        Customer customer = customerService.findByUserId(
-                userService.getLoggedUser().getId()
-        );
+        boolean isCustomer = localAppContext.getLoggedUser()
+                .getRoles()
+                .contains(Roles.CUSTOMER);
 
-        if(customer == null){
+        if(!isCustomer){
             JOptionPane.showMessageDialog(null, "El usuario no tiene acceso a esta vista");
             return;
         }

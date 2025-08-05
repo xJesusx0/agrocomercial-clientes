@@ -1,6 +1,8 @@
 package com.agrocomercial.clientes.context;
 
+import com.agrocomercial.clientes.controller.auth.AuthController;
 import com.agrocomercial.clientes.controller.OrderProductController;
+import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.services.*;
 import com.agrocomercial.clientes.views.customers.CustomerView;
 import com.agrocomercial.clientes.views.auth.LoginView;
@@ -17,7 +19,9 @@ import com.agrocomercial.clientes.views.orders.ListOrdersView;
  */
 @SuppressWarnings("java:S6548")
 public class AppContext {
-    
+
+    private final LoggedUser loggedUser = new LoggedUser();
+
     private final DocumentTypeService documentTypeService;
     private final UserService userService;
     private final CustomerService customerService;
@@ -26,6 +30,7 @@ public class AppContext {
     private final OrderService orderService;
 
     private final OrderProductController orderProductController;
+    private final AuthController authController;
 
     private LoginView loginView;
     private MainMenuView mainMenuView;
@@ -72,7 +77,8 @@ public class AppContext {
         productService = new ProductService();
         orderProductService = new OrderProductService();
 
-        orderProductController = new OrderProductController(orderProductService, productService, orderService, userService, customerService);
+        orderProductController = new OrderProductController(orderProductService, productService, orderService, userService, customerService, loggedUser);
+        authController = new AuthController(userService, customerService, loggedUser);
 
         loginView = null;
         mainMenuView = null;
@@ -87,9 +93,13 @@ public class AppContext {
         return instance;
     }
 
+    public LoggedUser getLoggedUser() {
+        return loggedUser;
+    }
+
     private void initViews() {
-        loginView = new LoginView(this, userService);
-        mainMenuView = new MainMenuView(this, customerService, userService);
+        loginView = new LoginView(this, authController);
+        mainMenuView = new MainMenuView(this);
         customerView = new CustomerView(documentTypeService);
         orderView = new CreateOrderView(this, orderProductController);
         addProductToOrderView = new AddProductToOrderView(this, orderProductController);

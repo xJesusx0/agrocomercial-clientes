@@ -213,7 +213,7 @@ public class AddProductToOrderView extends javax.swing.JFrame {
     private void clearInputs() {
         quantityField.setText("");
         if (productSelectField.getItemCount() > 0) {
-            productSelectField.setSelectedIndex(-1);
+            productSelectField.setSelectedIndex(0);
         }
     }
 

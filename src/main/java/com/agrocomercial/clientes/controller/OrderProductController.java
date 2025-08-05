@@ -1,5 +1,6 @@
 package com.agrocomercial.clientes.controller;
 
+import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.events.OrderCreatedEventListener;
 import com.agrocomercial.clientes.events.ProductAddedToOrderEventListener;
 import com.agrocomercial.clientes.models.*;
@@ -22,12 +23,15 @@ public class OrderProductController {
 
     private final List<OrderProduct> orderProductListToSave = new ArrayList<>();
 
-    public OrderProductController(OrderProductService orderProductService, ProductService productService, OrderService orderService, UserService userService, CustomerService customerService) {
+    private final LoggedUser loggedUser;
+
+    public OrderProductController(OrderProductService orderProductService, ProductService productService, OrderService orderService, UserService userService, CustomerService customerService, LoggedUser loggedUser) {
         this.orderProductService = orderProductService;
         this.productService = productService;
         this.orderService = orderService;
         this.userService = userService;
         this.customerService = customerService;
+        this.loggedUser = loggedUser;
     }
 
     public void saveOrder(Long orderNumber){
@@ -50,9 +54,7 @@ public class OrderProductController {
     }
 
     private Integer getCustomerId(){
-        User loggedUser = userService.getLoggedUser();
-        Customer customer = customerService.findByUserId(loggedUser.getId());
-        return customer.getId();
+        return loggedUser.getCustomerId();
     }
 
     public void addProductToOrder(Product product, Integer quantity) {

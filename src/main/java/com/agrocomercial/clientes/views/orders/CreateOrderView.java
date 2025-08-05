@@ -193,10 +193,8 @@ public class CreateOrderView extends javax.swing.JFrame implements ProductAddedT
     private void clearFields(){
         orderNumberField.setText("");
         DefaultTableModel defaultTableModel = getProductsTableModel();
-        int rowCount = defaultTableModel.getRowCount();
-        for(int i = 0; i < rowCount; i++){
-            defaultTableModel.removeRow(i);
-        }
+        defaultTableModel.setRowCount(0);
+
     }
 
     private DefaultTableModel getProductsTableModel(){

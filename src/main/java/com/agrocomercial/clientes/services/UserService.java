@@ -13,9 +13,7 @@ public class UserService {
             new User(3, "alberto", "1234")
     );
 
-    private User loggedUser;
-
-    public boolean authenticateUser(String username, String password){
+    public User authenticateUser(String username, String password){
         Optional<User> user = users.stream()
                 .filter(u ->
                         u.getUsername().equals(username) &&
@@ -23,14 +21,9 @@ public class UserService {
                 .findFirst();
 
         if(user.isPresent()){
-            loggedUser = user.get();
-            return true;
+            return user.get();
         }
 
-        return false;
-    }
-
-    public User getLoggedUser(){
-        return loggedUser;
+        return null;
     }
 }
