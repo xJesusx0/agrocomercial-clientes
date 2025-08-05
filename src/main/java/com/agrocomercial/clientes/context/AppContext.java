@@ -1,6 +1,6 @@
 package com.agrocomercial.clientes.context;
 
-import com.agrocomercial.clientes.controller.OrderController;
+import com.agrocomercial.clientes.controller.OrderProductController;
 import com.agrocomercial.clientes.services.*;
 import com.agrocomercial.clientes.views.customers.CustomerView;
 import com.agrocomercial.clientes.views.auth.LoginView;
@@ -25,7 +25,7 @@ public class AppContext {
     private final ProductService productService;
     private final OrderService orderService;
 
-    private final OrderController orderController;
+    private final OrderProductController orderProductController;
 
     private LoginView loginView;
     private MainMenuView mainMenuView;
@@ -38,7 +38,7 @@ public class AppContext {
 
     public ListOrdersView getListOrdersView() {
         if(listOrdersView == null){
-            listOrdersView = new ListOrdersView(this, orderController);
+            listOrdersView = new ListOrdersView(this, orderProductController);
         }
 
         return listOrdersView;
@@ -72,7 +72,7 @@ public class AppContext {
         productService = new ProductService();
         orderProductService = new OrderProductService();
 
-        orderController = new OrderController(orderProductService, productService, orderService, userService, customerService);
+        orderProductController = new OrderProductController(orderProductService, productService, orderService, userService, customerService);
 
         loginView = null;
         mainMenuView = null;
@@ -91,7 +91,7 @@ public class AppContext {
         loginView = new LoginView(this, userService);
         mainMenuView = new MainMenuView(this, customerService, userService);
         customerView = new CustomerView(documentTypeService);
-        orderView = new CreateOrderView(this, orderController);
-        addProductToOrderView = new AddProductToOrderView(this, orderController);
+        orderView = new CreateOrderView(this, orderProductController);
+        addProductToOrderView = new AddProductToOrderView(this, orderProductController);
     }
 }

@@ -5,7 +5,7 @@
 package com.agrocomercial.clientes.views.orders;
 
 import com.agrocomercial.clientes.context.AppContext;
-import com.agrocomercial.clientes.controller.OrderController;
+import com.agrocomercial.clientes.controller.OrderProductController;
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.WindowUtils;
 
@@ -20,12 +20,12 @@ import java.util.List;
  */
 public class AddProductToOrderView extends javax.swing.JFrame {
 
-    private final transient OrderController controller;
+    private final transient OrderProductController controller;
     private final transient AppContext localAppContext;
     /**
      * Creates new form AddProductToOrderView
      */
-    public AddProductToOrderView(AppContext appContext, OrderController controller) {
+    public AddProductToOrderView(AppContext appContext, OrderProductController controller) {
         initComponents();
         this.localAppContext = appContext;
         this.controller = controller;

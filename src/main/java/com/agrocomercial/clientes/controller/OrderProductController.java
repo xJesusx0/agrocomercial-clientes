@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class OrderController {
+public class OrderProductController {
 
     private final OrderProductService orderProductService;
     private final ProductService productService;
@@ -22,7 +22,7 @@ public class OrderController {
 
     private final List<OrderProduct> orderProductListToSave = new ArrayList<>();
 
-    public OrderController(OrderProductService orderProductService, ProductService productService, OrderService orderService, UserService userService, CustomerService customerService) {
+    public OrderProductController(OrderProductService orderProductService, ProductService productService, OrderService orderService, UserService userService, CustomerService customerService) {
         this.orderProductService = orderProductService;
         this.productService = productService;
         this.orderService = orderService;

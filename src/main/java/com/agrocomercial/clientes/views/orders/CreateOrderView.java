@@ -5,7 +5,7 @@
 package com.agrocomercial.clientes.views.orders;
 
 import com.agrocomercial.clientes.context.AppContext;
-import com.agrocomercial.clientes.controller.OrderController;
+import com.agrocomercial.clientes.controller.OrderProductController;
 import com.agrocomercial.clientes.events.ProductAddedToOrderEventListener;
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.WindowUtils;
@@ -28,9 +28,9 @@ public class CreateOrderView extends javax.swing.JFrame implements ProductAddedT
     }
 
     private final transient AppContext localAppContext;
-    private final transient OrderController controller;
+    private final transient OrderProductController controller;
 
-    public CreateOrderView(AppContext appContext, OrderController controller) {
+    public CreateOrderView(AppContext appContext, OrderProductController controller) {
         initComponents();
         this.controller = controller;
         this.localAppContext = appContext;

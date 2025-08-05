@@ -5,7 +5,7 @@
 package com.agrocomercial.clientes.views.orders;
 
 import com.agrocomercial.clientes.context.AppContext;
-import com.agrocomercial.clientes.controller.OrderController;
+import com.agrocomercial.clientes.controller.OrderProductController;
 import com.agrocomercial.clientes.events.OrderCreatedEventListener;
 import com.agrocomercial.clientes.models.Order;
 import com.agrocomercial.clientes.utils.WindowUtils;
@@ -23,26 +23,26 @@ import static com.agrocomercial.clientes.utils.WindowUtils.getTableModel;
 public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEventListener {
 
     private final transient AppContext localAppContext;
-    private final transient OrderController orderController;
+    private final transient OrderProductController orderProductController;
 
     /**
      * Creates new form ListOrdersView
      */
-    public ListOrdersView(AppContext appContext, OrderController orderController) {
+    public ListOrdersView(AppContext appContext, OrderProductController orderProductController) {
         initComponents();
         this.localAppContext = appContext;
-        this.orderController = orderController;
+        this.orderProductController = orderProductController;
         subscribeToOrderCreated();
         loadOrders();
     }
 
     private void subscribeToOrderCreated(){
-        orderController.subscribeToOrderCreated(this);
+        orderProductController.subscribeToOrderCreated(this);
     }
 
     private void loadOrders(){
         DefaultTableModel tableModel = getTableModel(ordersTable);
-        List<Order> orders = orderController.getOrders();
+        List<Order> orders = orderProductController.getOrders();
 
         orders.forEach(order -> tableModel.addRow(
                 new Object[]{order.getOrderNumber(), order.getSubtotal()}
