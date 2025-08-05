@@ -1,6 +1,7 @@
 package com.agrocomercial.clientes.services;
 
 import com.agrocomercial.clientes.models.Product;
+import com.agrocomercial.clientes.utils.ServiceUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,5 +32,12 @@ public class ProductService {
         return productList.stream()
                 .filter(product -> ids.contains(product.getId()))
                 .toList();
+    }
+
+    public Product save(Product product) {
+        Integer id = ServiceUtils.getLastId(productList);
+        product.setId(id);
+        productList.add(product);
+        return product;
     }
 }
