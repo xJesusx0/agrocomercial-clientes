@@ -62,10 +62,12 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
     private void initComponents() {
         javax.swing.JScrollPane jScrollPane1;
         javax.swing.JButton createOrderButton;
+        javax.swing.JButton closeButton;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         ordersTable = new javax.swing.JTable();
         createOrderButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,6 +97,9 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
         createOrderButton.setText("Crear pedido");
         createOrderButton.addActionListener(evt -> createOrderButtonActionPerformed());
 
+        closeButton.setText("Cerrar");
+        closeButton.addActionListener(evt -> closeButtonActionPerformed());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,6 +110,8 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(createOrderButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(closeButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -112,7 +119,9 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(createOrderButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createOrderButton)
+                    .addComponent(closeButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -123,6 +132,11 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
 
     private void createOrderButtonActionPerformed() {
         WindowUtils.closeAndShowPanel(this, localAppContext.getCreateOrderView());
+    }
+
+    private void closeButtonActionPerformed() {
+        dispose();
+        localAppContext.getMainMenuView().setVisible(true);
     }
 
 
