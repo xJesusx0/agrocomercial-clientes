@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this
+ * license Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.agrocomercial.clientes.views.orders;
 
@@ -20,197 +20,195 @@ import java.util.List;
  */
 public class AddProductToOrderView extends javax.swing.JFrame {
 
-    private final transient OrderProductController controller;
-    private final transient AppContext localAppContext;
-    /**
-     * Creates new form AddProductToOrderView
-     */
-    public AddProductToOrderView(AppContext appContext, OrderProductController controller) {
-        initComponents();
-        this.localAppContext = appContext;
-        this.controller = controller;
-        addQuantityInputListener();
+  private final transient OrderProductController controller;
+  private final transient AppContext localAppContext;
 
-        loadProducts();
-    }
+  /**
+   * Creates new form AddProductToOrderView
+   */
+  public AddProductToOrderView(AppContext appContext, OrderProductController controller) {
+    initComponents();
+    this.localAppContext = appContext;
+    this.controller = controller;
+    addQuantityInputListener();
 
-    private void loadProducts(){
-        List<Product> products = controller.getProducts();
+    loadProducts();
+  }
 
-        products.forEach(product -> productSelectField.addItem(product));
-    }
+  private void loadProducts() {
+    List<Product> products = controller.getProducts();
 
-    private void initComponents() {
-        javax.swing.JLabel jLabel2;
-        javax.swing.JLabel jLabel3;
-        javax.swing.JLabel jLabel1;
-        javax.swing.JButton cancelButton;
-        javax.swing.JButton addProductToOrderButton;
+    products.forEach(product -> productSelectField.addItem(product));
+  }
 
-        productSelectField = new javax.swing.JComboBox<>();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        quantityField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        totalField = new javax.swing.JTextField();
-        addProductToOrderButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
+  private void initComponents() {
+    javax.swing.JLabel jLabel2;
+    javax.swing.JLabel jLabel3;
+    javax.swing.JLabel jLabel1;
+    javax.swing.JButton cancelButton;
+    javax.swing.JButton addProductToOrderButton;
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    productSelectField = new javax.swing.JComboBox<>();
+    jLabel1 = new javax.swing.JLabel();
+    jLabel2 = new javax.swing.JLabel();
+    quantityField = new javax.swing.JTextField();
+    jLabel3 = new javax.swing.JLabel();
+    totalField = new javax.swing.JTextField();
+    addProductToOrderButton = new javax.swing.JButton();
+    cancelButton = new javax.swing.JButton();
 
-        productSelectField.setModel(new javax.swing.DefaultComboBoxModel<>());
-        productSelectField.addActionListener(e -> updateTotal());
+    setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Producto");
+    productSelectField.setModel(new javax.swing.DefaultComboBoxModel<>());
+    productSelectField.addActionListener(e -> updateTotal());
 
-        jLabel2.setText("Cantidad");
+    jLabel1.setText("Producto");
 
-        jLabel3.setText("Total");
+    jLabel2.setText("Cantidad");
 
-        totalField.setEditable(false);
+    jLabel3.setText("Total");
 
-        addProductToOrderButton.setText("añadir");
-        addProductToOrderButton.addActionListener(evt -> addProductToOrderButtonActionPerformed());
+    totalField.setEditable(false);
 
-        cancelButton.setText("cancelar");
-        cancelButton.addActionListener(evt -> cancelButtonActionPerformed());
+    addProductToOrderButton.setText("añadir");
+    addProductToOrderButton.addActionListener(evt -> addProductToOrderButtonActionPerformed());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(addProductToOrderButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(cancelButton))
+    cancelButton.setText("cancelar");
+    cancelButton.addActionListener(evt -> cancelButtonActionPerformed());
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout
+            .createSequentialGroup().addGap(30, 30, 30)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup().addComponent(addProductToOrderButton).addGap(18, 18, 18)
+                            .addComponent(cancelButton))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(productSelectField, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel3))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(quantityField)
-                                .addComponent(totalField)))))
-                .addContainerGap(21, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(productSelectField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addProductToOrderButton)
-                    .addComponent(cancelButton))
-                .addContainerGap(164, Short.MAX_VALUE))
-        );
+                            .addGroup(layout.createSequentialGroup().addComponent(jLabel1).addGap(18, 18, 18)
+                                    .addComponent(productSelectField, javax.swing.GroupLayout.PREFERRED_SIZE, 274,
+                                            javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2).addComponent(jLabel3))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(quantityField).addComponent(totalField)))))
+            .addContainerGap(21, Short.MAX_VALUE)));
+    layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup().addGap(20, 20, 20)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(productSelectField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2).addComponent(quantityField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3).addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                    javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addProductToOrderButton).addComponent(cancelButton))
+                    .addContainerGap(164, Short.MAX_VALUE)));
 
-        pack();
-    }// </editor-fold>//GEN-END:initComponents
+    pack();
+  }// </editor-fold>//GEN-END:initComponents
 
-    private void cancelButtonActionPerformed() {
-        redirectToOrderView();
+  private void cancelButtonActionPerformed() {
+    redirectToOrderView();
+  }
+
+  private void addProductToOrderButtonActionPerformed() {
+    Product product = (Product) productSelectField.getSelectedItem();
+    String quantityText = quantityField.getText().trim();
+
+    if (product == null) {
+      JOptionPane.showMessageDialog(null, "Debe seleccionar un producto.");
+      return;
     }
 
-    private void addProductToOrderButtonActionPerformed() {
-        Product product = (Product) productSelectField.getSelectedItem();
-        String quantityText = quantityField.getText().trim();
-
-        if (product == null) {
-            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto.");
-            return;
-        }
-
-        if (quantityText.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar una cantidad.");
-            return;
-        }
-
-        int quantity;
-
-        try {
-            quantity = Integer.parseInt(quantityText);
-
-            if (quantity <= 0) {
-                JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor a cero.");
-                return;
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "La cantidad debe ser un número entero válido.");
-            return;
-        }
-
-        controller.addProductToOrder(product, quantity);
-        redirectToOrderView();
+    if (quantityText.isEmpty()) {
+      JOptionPane.showMessageDialog(null, "Debe ingresar una cantidad.");
+      return;
     }
 
-    public void addQuantityInputListener() {
-        quantityField.getDocument().addDocumentListener(new DocumentListener() {
-            public void insertUpdate(DocumentEvent e) { updateTotal(); }
-            public void removeUpdate(DocumentEvent e) { updateTotal(); }
-            public void changedUpdate(DocumentEvent e) { updateTotal(); }
-        });
+    int quantity;
+
+    try {
+      quantity = Integer.parseInt(quantityText);
+
+      if (quantity <= 0) {
+        JOptionPane.showMessageDialog(null, "La cantidad debe ser mayor a cero.");
+        return;
+      }
+
+    } catch (NumberFormatException e) {
+      JOptionPane.showMessageDialog(null, "La cantidad debe ser un número entero válido.");
+      return;
     }
 
-    private void updateTotal() {
-        final String defaultText = "Total: $0";
-        Product product = (Product) productSelectField.getSelectedItem();
-        String quantityText = quantityField.getText().trim();
+    controller.addProductToOrder(product, quantity);
+    redirectToOrderView();
+  }
 
-        if (product == null || quantityText.isEmpty()) {
-            totalField.setText(defaultText);
-            return;
-        }
+  public void addQuantityInputListener() {
+    quantityField.getDocument().addDocumentListener(new DocumentListener() {
+      public void insertUpdate(DocumentEvent e) {
+        updateTotal();
+      }
 
-        try {
-            int quantity = Integer.parseInt(quantityText);
-            if (quantity <= 0) {
-                totalField.setText(defaultText);
-                return;
-            }
+      public void removeUpdate(DocumentEvent e) {
+        updateTotal();
+      }
 
-            double total = quantity * product.getPrice();
-            totalField.setText(String.format("Total: $%.2f", total));
-        } catch (NumberFormatException e) {
-            totalField.setText(defaultText);
-        }
+      public void changedUpdate(DocumentEvent e) {
+        updateTotal();
+      }
+    });
+  }
+
+  private void updateTotal() {
+    final String defaultText = "Total: $0";
+    Product product = (Product) productSelectField.getSelectedItem();
+    String quantityText = quantityField.getText().trim();
+
+    if (product == null || quantityText.isEmpty()) {
+      totalField.setText(defaultText);
+      return;
     }
 
+    try {
+      int quantity = Integer.parseInt(quantityText);
+      if (quantity <= 0) {
+        totalField.setText(defaultText);
+        return;
+      }
 
-    private void redirectToOrderView(){
-        clearInputs();
-        WindowUtils.closeAndShowPanel(this, localAppContext.getCreateOrderView());
+      double total = quantity * product.getPrice();
+      totalField.setText(String.format("Total: $%.2f", total));
+    } catch (NumberFormatException e) {
+      totalField.setText(defaultText);
     }
+  }
 
-    private void clearInputs() {
-        quantityField.setText("");
-        if (productSelectField.getItemCount() > 0) {
-            productSelectField.setSelectedIndex(0);
-        }
+
+  private void redirectToOrderView() {
+    clearInputs();
+    WindowUtils.closeAndShowPanel(this, localAppContext.getCreateOrderView());
+  }
+
+  private void clearInputs() {
+    quantityField.setText("");
+    if (productSelectField.getItemCount() > 0) {
+      productSelectField.setSelectedIndex(0);
     }
+  }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<Product> productSelectField;
-    private javax.swing.JTextField quantityField;
-    private javax.swing.JTextField totalField;
-    // End of variables declaration//GEN-END:variables
+  // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JComboBox<Product> productSelectField;
+  private javax.swing.JTextField quantityField;
+  private javax.swing.JTextField totalField;
+  // End of variables declaration//GEN-END:variables
 }
