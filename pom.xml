@@ -15,8 +15,9 @@
     </properties>
 
     <build>
-        <plugins>
-            <plugin>
+    <pluginManagement>
+      <plugins>
+                      <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
@@ -24,7 +25,106 @@
                     <mainClass>com.agrocomercial.clientes.Main</mainClass>
                 </configuration>
             </plugin>
-        </plugins>
-    </build>
+        <!-- Formatter Maven Plugin (Eclipse style) -->
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>2.27.0</version>
+        </plugin>
+        <!-- Spotless Maven Plugin -->
+        <plugin>
+          <groupId>com.diffplug.spotless</groupId>
+          <artifactId>spotless-maven-plugin</artifactId>
+          <version>2.43.0</version>
+        </plugin>
+        <!-- Checkstyle Plugin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <!-- formatter-maven-plugin for auto‑formateo -->
+      <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+        <configuration>
+          <configFile>${project.basedir}/eclipse-formatter.xml</configFile>
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <compilerSource>${maven.compiler.source}</compilerSource>
+          <compilerCompliance>${maven.compiler.source}</compilerCompliance>
+          <compilerTargetPlatform>${maven.compiler.target}</compilerTargetPlatform>
+          <lineEnding>AUTO</lineEnding>
+        </configuration>
+        <executions>
+          <execution>
+            <id>format-code</id>
+            <goals><goal>format</goal></goals>
+            <phase>process-sources</phase>
+          </execution>
+          <execution>
+            <id>validate-format</id>
+            <goals><goal>validate</goal></goals>
+            <phase>verify</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- spotless-maven-plugin para estilo Google o personalizado -->
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <configuration>
+          <java>
+            <!-- puedes usar eclipse style.xml en lugar de googleJavaFormat -->
+            <eclipse>
+              <file>${project.basedir}/eclipse-formatter.xml</file>
+            </eclipse>
+            <importOrder/>
+            <removeUnusedImports/>
+            <formatAnnotations/>
+            <removeTrailingWhitespace/>
+            <endWithNewline/>
+          </java>
+        </configuration>
+        <executions>
+          <execution>
+            <id>spotless-check</id>
+            <goals><goal>check</goal></goals>
+            <phase>verify</phase>
+          </execution>
+          <execution>
+            <id>spotless-apply</id>
+            <goals><goal>apply</goal></goals>
+            <phase>process-sources</phase>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- checkstyle para verificar normas como nombres, longitud de líneas, imports -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <configLocation>checkstyle/google_checks.xml</configLocation>
+          <!-- o una versión personalizada en tu repositorio -->
+          <encoding>${project.build.sourceEncoding}</encoding>
+          <consoleOutput>true</consoleOutput>
+          <failOnViolation>true</failOnViolation>
+        </configuration>
+        <executions>
+          <execution>
+            <id>validate-style</id>
+            <phase>verify</phase>
+            <goals><goal>check</goal></goals>
+          </execution>
+        </executions>
+      </plugin>
+
+    </plugins>
+  </build>
 
 </project>
