@@ -84,8 +84,10 @@ public class AppContext {
     }
 
     private AppContext() {
+        ServiceContext serviceContext = new ServiceContext();
+
         documentTypeService = new DocumentTypeService();
-        userService = new UserService();
+        userService = serviceContext.getUserService();
         customerService = new CustomerService();
         orderService = new OrderService();
         productService = new ProductService();
