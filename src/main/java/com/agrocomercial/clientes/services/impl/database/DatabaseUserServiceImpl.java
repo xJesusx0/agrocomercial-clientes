@@ -4,6 +4,9 @@ import com.agrocomercial.clientes.models.User;
 import com.agrocomercial.clientes.repositories.UserRepository;
 import com.agrocomercial.clientes.services.UserService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DatabaseUserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -15,5 +18,11 @@ public class DatabaseUserServiceImpl implements UserService {
     public User authenticateUser(String username, String password) {
         return userRepository.findByUsernameAndPassword(username, password)
                 .orElse(null);
+    }
+
+    @Override
+    public List<User> findAll() {
+        // TODO: Falta crear esto con la base de datos
+        return new ArrayList<>();
     }
 }
