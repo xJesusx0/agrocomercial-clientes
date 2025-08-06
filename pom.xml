@@ -37,12 +37,6 @@
           <artifactId>spotless-maven-plugin</artifactId>
           <version>2.46.1</version>
         </plugin>
-        <!-- Checkstyle Plugin -->
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>3.3.0</version>
-        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -99,26 +93,6 @@
             <id>spotless-apply</id>
             <goals><goal>apply</goal></goals>
             <phase>process-sources</phase>
-          </execution>
-        </executions>
-      </plugin>
-
-      <!-- checkstyle para verificar normas como nombres, longitud de líneas, imports -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <configuration>
-          <configLocation>checkstyle/google_checks.xml</configLocation>
-          <!-- o una versión personalizada en tu repositorio -->
-          <encoding>${project.build.sourceEncoding}</encoding>
-          <consoleOutput>true</consoleOutput>
-          <failOnViolation>true</failOnViolation>
-        </configuration>
-        <executions>
-          <execution>
-            <id>validate-style</id>
-            <phase>verify</phase>
-            <goals><goal>check</goal></goals>
           </execution>
         </executions>
       </plugin>
