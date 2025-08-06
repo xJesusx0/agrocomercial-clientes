@@ -12,16 +12,21 @@ public class ServiceContext {
     private final OrderProductService orderProductService;
     private final OrderService orderService;
     private final ProductService productService;
+    private final AdministratorService administratorService;
+    private final LocationService locationService;
 
     public ServiceContext() {
         RepositoryContext repositoryContext = new RepositoryContext();
 
-        userService = new DatabaseUserServiceImpl(repositoryContext.getUserRepository());
+        // userService = new DatabaseUserServiceImpl(repositoryContext.getUserRepository());
+        userService = new UserServiceImpl();
         customerService = new CustomerServiceImpl();
         documentTypeService = new DocumentTypeServiceImpl();
         orderProductService = new OrderProductServiceImpl();
         orderService = new OrderServiceImpl();
         productService = new ProductServiceImpl();
+        administratorService = new AdministratorServiceImpl();
+        locationService = new LocationServiceImpl();
     }
 
     public UserService getUserService() {
@@ -46,5 +51,13 @@ public class ServiceContext {
 
     public ProductService getProductService() {
         return productService;
+    }
+
+    public AdministratorService getAdministratorService() {
+        return administratorService;
+    }
+
+    public LocationService getLocationService() {
+        return locationService;
     }
 }
