@@ -1,5 +1,7 @@
 package com.agrocomercial.clientes.database;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,20 +10,18 @@ public class DatabaseConnector {
 
     private DatabaseConnector(){}
 
-    private static final String URL = "jdbc:mysql://localhost:3306/agrocomercial";
-    private static final String USER = "root";
-    private static final String PASSWORD = "081880";
-
     public static Connection connect(){
+
+        Dotenv dotenv = Dotenv.load();
+
+        String url = dotenv.get("DB_URL");
+        String user = dotenv.get("DB_USER");
+        String password = dotenv.get("DB_PASSWORD");
+
         Connection connection;
 
         try{
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-
-            if(connection != null){
-                System.out.println("Conexion con la base de datos exitosa");
-            }
-
+            connection = DriverManager.getConnection(url, user, password);
             return connection;
 
         } catch (SQLException e) {
