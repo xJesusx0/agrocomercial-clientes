@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface DocumentTypeService {
 
-  List<DocumentType> findAll();
+    List<DocumentType> findAll();
 }
