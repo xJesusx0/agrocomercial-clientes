@@ -91,7 +91,7 @@ public class AppContext {
         productService = new ProductService();
         orderProductService = new OrderProductService();
 
-        orderProductController = new OrderProductController(orderProductService, productService, orderService, userService, customerService, loggedUser);
+        orderProductController = new OrderProductController(orderProductService, productService, orderService, loggedUser);
         authController = new AuthController(userService, customerService, loggedUser);
         productController = new ProductController(productService);
     }

@@ -15,8 +15,6 @@ public class OrderProductController {
     private final OrderProductService orderProductService;
     private final ProductService productService;
     private final OrderService orderService;
-    private final UserService userService;
-    private final CustomerService customerService;
 
     private final List<ProductAddedToOrderEventListener> productAddedToOrderEventListeners = new ArrayList<>();
     private final List<OrderCreatedEventListener> orderCreatedEventListeners = new ArrayList<>();
@@ -25,12 +23,10 @@ public class OrderProductController {
 
     private final LoggedUser loggedUser;
 
-    public OrderProductController(OrderProductService orderProductService, ProductService productService, OrderService orderService, UserService userService, CustomerService customerService, LoggedUser loggedUser) {
+    public OrderProductController(OrderProductService orderProductService, ProductService productService, OrderService orderService, LoggedUser loggedUser) {
         this.orderProductService = orderProductService;
         this.productService = productService;
         this.orderService = orderService;
-        this.userService = userService;
-        this.customerService = customerService;
         this.loggedUser = loggedUser;
     }
 

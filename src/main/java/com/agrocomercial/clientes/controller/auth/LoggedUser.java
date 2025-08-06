@@ -12,8 +12,6 @@ public class LoggedUser {
     private Integer adminId;
     private final Set<Roles> roles = new HashSet<>();
 
-    public LoggedUser() {}
-
     public Integer getUserId() {
         return userId;
     }

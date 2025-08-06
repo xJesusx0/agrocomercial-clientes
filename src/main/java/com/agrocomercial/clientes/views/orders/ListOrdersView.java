@@ -60,6 +60,8 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        javax.swing.JScrollPane jScrollPane1;
+        javax.swing.JButton createOrderButton;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         ordersTable = new javax.swing.JTable();
@@ -79,6 +81,7 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
                 false, false
             };
 
+            @Override
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
@@ -90,11 +93,7 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
         }
 
         createOrderButton.setText("Crear pedido");
-        createOrderButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createOrderButtonActionPerformed(evt);
-            }
-        });
+        createOrderButton.addActionListener(evt -> createOrderButtonActionPerformed());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,14 +121,12 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void createOrderButtonActionPerformed(java.awt.event.ActionEvent evt) {
+    private void createOrderButtonActionPerformed() {
         WindowUtils.closeAndShowPanel(this, localAppContext.getCreateOrderView());
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton createOrderButton;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable ordersTable;
 
     @Override
