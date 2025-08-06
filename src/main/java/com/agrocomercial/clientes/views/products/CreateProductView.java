@@ -4,9 +4,11 @@
  */
 package com.agrocomercial.clientes.views.products;
 
+import com.agrocomercial.clientes.context.AppContext;
 import com.agrocomercial.clientes.controller.products.ProductController;
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.ParseUtils;
+import com.agrocomercial.clientes.utils.WindowUtils;
 
 import javax.swing.*;
 import java.util.Optional;
@@ -17,13 +19,15 @@ import java.util.Optional;
  */
 public class CreateProductView extends javax.swing.JFrame {
 
+    private final transient AppContext localAppContext;
     private final transient ProductController productController;
 
     /**
      * Creates new form CreateProductView
      */
-    public CreateProductView(ProductController productController) {
+    public CreateProductView(AppContext appContext, ProductController productController) {
         initComponents();
+        this.localAppContext = appContext;
         this.productController = productController;
     }
 
@@ -132,6 +136,7 @@ public class CreateProductView extends javax.swing.JFrame {
         productController.save(new Product(name, description, price));
         JOptionPane.showMessageDialog(null, "Producto creado correctamente");
         clearFields();
+        WindowUtils.closeAndShowPanel(this, localAppContext.getListProductsView());
     }
 
     private void clearFields() {

@@ -12,6 +12,7 @@ import com.agrocomercial.clientes.views.orders.AddProductToOrderView;
 import com.agrocomercial.clientes.views.orders.CreateOrderView;
 import com.agrocomercial.clientes.views.orders.ListOrdersView;
 import com.agrocomercial.clientes.views.products.CreateProductView;
+import com.agrocomercial.clientes.views.products.ListProductsView;
 
 /**
  * Clase usada para manejar el ciclo de vida
@@ -42,8 +43,17 @@ public class AppContext {
     private AddProductToOrderView addProductToOrderView;
     private ListOrdersView listOrdersView;
     private CreateProductView createProductView;
+    private ListProductsView listProductsView;
 
     private static AppContext instance;
+
+    public ListProductsView getListProductsView() {
+        return listProductsView;
+    }
+
+   public CreateProductView getCreateProductView(){
+       return createProductView;
+   }
 
     public ListOrdersView getListOrdersView() {
         if(listOrdersView == null){
@@ -84,10 +94,6 @@ public class AppContext {
         orderProductController = new OrderProductController(orderProductService, productService, orderService, userService, customerService, loggedUser);
         authController = new AuthController(userService, customerService, loggedUser);
         productController = new ProductController(productService);
-
-        loginView = null;
-        mainMenuView = null;
-        customerView = null;
     }
 
     public static AppContext getInstance() {
@@ -108,6 +114,7 @@ public class AppContext {
         customerView = new CustomerView(documentTypeService);
         orderView = new CreateOrderView(this, orderProductController);
         addProductToOrderView = new AddProductToOrderView(this, orderProductController);
-        createProductView = new CreateProductView(productController);
+        createProductView = new CreateProductView(this, productController);
+        listProductsView = new ListProductsView(this, productController);
     }
 }
