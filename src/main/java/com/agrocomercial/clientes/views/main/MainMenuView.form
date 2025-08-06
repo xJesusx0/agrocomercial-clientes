@@ -59,7 +59,9 @@
               <Component id="customerRedirection" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ordersRedirection" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="240" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="productsRedirection" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="134" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,6 +71,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="customerRedirection" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="ordersRedirection" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="productsRedirection" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="0" pref="277" max="32767" attributes="0"/>
           </Group>
@@ -90,6 +93,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ordersRedirectionActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="productsRedirection">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="productos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="productsRedirectionActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
