@@ -3,6 +3,7 @@ package com.agrocomercial.clientes.controller.products;
 import com.agrocomercial.clientes.events.ProductCreatedEventListener;
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.services.ProductService;
+import com.agrocomercial.clientes.services.impl.memory.ProductServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;

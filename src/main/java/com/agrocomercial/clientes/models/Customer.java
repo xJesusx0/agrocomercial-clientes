@@ -5,24 +5,27 @@ public class Customer extends BaseEntity {
     private String name;
     private String lastname;
     private String phoneNumber;
+    private String identification;
 
     // FK
     private Integer idDocumentType;
     private Integer idUser;
 
-    public Customer(String name, String lastname, String phoneNumber, Integer idDocumentType, Integer idUser) {
+    public Customer(String name, String lastname, String phoneNumber, String identification, Integer idDocumentType, Integer idUser) {
         this.name = name;
         this.lastname = lastname;
         this.phoneNumber = phoneNumber;
+        this.identification = identification;
         this.idDocumentType = idDocumentType;
         this.idUser = idUser;
     }
 
-    public Customer(Integer id, String name, String lastname, String phoneNumber, Integer idDocumentType, Integer idUser) {
+    public Customer(Integer id, String name, String lastname, String phoneNumber, String identification, Integer idDocumentType, Integer idUser) {
         super(id);
         this.name = name;
         this.lastname = lastname;
         this.phoneNumber = phoneNumber;
+        this.identification = identification;
         this.idDocumentType = idDocumentType;
         this.idUser = idUser;
     }
@@ -65,5 +68,13 @@ public class Customer extends BaseEntity {
 
     public void setIdUser(Integer idUser) {
         this.idUser = idUser;
+    }
+
+    public String getIdentification() {
+        return identification;
+    }
+
+    public void setIdentification(String identification) {
+        this.identification = identification;
     }
 }

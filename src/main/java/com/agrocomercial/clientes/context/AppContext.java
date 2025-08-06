@@ -5,6 +5,10 @@ import com.agrocomercial.clientes.controller.orders.OrderProductController;
 import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.controller.products.ProductController;
 import com.agrocomercial.clientes.services.*;
+import com.agrocomercial.clientes.services.impl.memory.DocumentTypeServiceImpl;
+import com.agrocomercial.clientes.services.impl.memory.OrderProductServiceImpl;
+import com.agrocomercial.clientes.services.impl.memory.OrderServiceImpl;
+import com.agrocomercial.clientes.services.impl.memory.ProductServiceImpl;
 import com.agrocomercial.clientes.views.customers.CustomerView;
 import com.agrocomercial.clientes.views.auth.LoginView;
 import com.agrocomercial.clientes.views.main.MainMenuView;
@@ -84,12 +88,14 @@ public class AppContext {
     }
 
     private AppContext() {
-        documentTypeService = new DocumentTypeService();
-        userService = new UserService();
-        customerService = new CustomerService();
-        orderService = new OrderService();
-        productService = new ProductService();
-        orderProductService = new OrderProductService();
+        ServiceContext serviceContext = new ServiceContext();
+
+        documentTypeService = serviceContext.getDocumentTypeService();
+        userService = serviceContext.getUserService();
+        customerService = serviceContext.getCustomerService();
+        orderService = serviceContext.getOrderService();
+        productService = serviceContext.getProductService();
+        orderProductService = serviceContext.getOrderProductService();
 
         orderProductController = new OrderProductController(orderProductService, productService, orderService, loggedUser);
         authController = new AuthController(userService, customerService, loggedUser);

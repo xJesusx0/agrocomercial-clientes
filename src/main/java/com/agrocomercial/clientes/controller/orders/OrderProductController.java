@@ -4,7 +4,12 @@ import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.events.OrderCreatedEventListener;
 import com.agrocomercial.clientes.events.ProductAddedToOrderEventListener;
 import com.agrocomercial.clientes.models.*;
-import com.agrocomercial.clientes.services.*;
+import com.agrocomercial.clientes.services.OrderProductService;
+import com.agrocomercial.clientes.services.OrderService;
+import com.agrocomercial.clientes.services.ProductService;
+import com.agrocomercial.clientes.services.impl.memory.OrderProductServiceImpl;
+import com.agrocomercial.clientes.services.impl.memory.OrderServiceImpl;
+import com.agrocomercial.clientes.services.impl.memory.ProductServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
