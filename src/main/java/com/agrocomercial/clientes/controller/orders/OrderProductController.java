@@ -5,7 +5,6 @@ import com.agrocomercial.clientes.events.OrderCreatedEventListener;
 import com.agrocomercial.clientes.events.ProductAddedToOrderEventListener;
 import com.agrocomercial.clientes.models.*;
 import com.agrocomercial.clientes.services.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
@@ -88,5 +87,3 @@ public class OrderProductController {
     orderCreatedEventListeners.add(listener);
   }
 }
-
-

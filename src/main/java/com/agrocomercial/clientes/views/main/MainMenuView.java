@@ -7,7 +7,6 @@ package com.agrocomercial.clientes.views.main;
 import com.agrocomercial.clientes.context.AppContext;
 import com.agrocomercial.clientes.utils.Roles;
 import com.agrocomercial.clientes.utils.WindowUtils;
-
 import javax.swing.*;
 
 /**

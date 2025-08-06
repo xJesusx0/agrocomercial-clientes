@@ -3,7 +3,6 @@ package com.agrocomercial.clientes.views.auth;
 import com.agrocomercial.clientes.context.AppContext;
 import com.agrocomercial.clientes.controller.auth.AuthController;
 import com.agrocomercial.clientes.utils.WindowUtils;
-
 import javax.swing.*;
 
 /**

@@ -6,7 +6,6 @@ package com.agrocomercial.clientes.views.customers;
 
 import com.agrocomercial.clientes.models.DocumentType;
 import com.agrocomercial.clientes.services.DocumentTypeService;
-
 import java.util.List;
 
 /**

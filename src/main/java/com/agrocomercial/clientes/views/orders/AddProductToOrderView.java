@@ -8,11 +8,10 @@ import com.agrocomercial.clientes.context.AppContext;
 import com.agrocomercial.clientes.controller.orders.OrderProductController;
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.WindowUtils;
-
+import java.util.List;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import java.util.List;
 
 /**
  *

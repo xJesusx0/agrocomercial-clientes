@@ -4,17 +4,15 @@
  */
 package com.agrocomercial.clientes.views.orders;
 
+import static com.agrocomercial.clientes.utils.WindowUtils.getTableModel;
+
 import com.agrocomercial.clientes.context.AppContext;
 import com.agrocomercial.clientes.controller.orders.OrderProductController;
 import com.agrocomercial.clientes.events.OrderCreatedEventListener;
 import com.agrocomercial.clientes.models.Order;
 import com.agrocomercial.clientes.utils.WindowUtils;
-
-import javax.swing.table.DefaultTableModel;
-
 import java.util.List;
-
-import static com.agrocomercial.clientes.utils.WindowUtils.getTableModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *

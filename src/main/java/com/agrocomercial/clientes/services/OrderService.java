@@ -1,11 +1,10 @@
 package com.agrocomercial.clientes.services;
 
-import com.agrocomercial.clientes.models.Order;
+import static com.agrocomercial.clientes.utils.ServiceUtils.getLastId;
 
+import com.agrocomercial.clientes.models.Order;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.agrocomercial.clientes.utils.ServiceUtils.getLastId;
 
 public class OrderService {
 

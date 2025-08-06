@@ -1,7 +1,6 @@
 package com.agrocomercial.clientes.services;
 
 import com.agrocomercial.clientes.models.DocumentType;
-
 import java.util.List;
 
 @SuppressWarnings("java:S6548")

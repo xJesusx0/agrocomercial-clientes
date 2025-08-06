@@ -9,9 +9,8 @@ import com.agrocomercial.clientes.controller.products.ProductController;
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.ParseUtils;
 import com.agrocomercial.clientes.utils.WindowUtils;
-
-import javax.swing.*;
 import java.util.Optional;
+import javax.swing.*;
 
 /**
  *

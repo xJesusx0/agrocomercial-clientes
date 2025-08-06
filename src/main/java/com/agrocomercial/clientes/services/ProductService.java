@@ -2,7 +2,6 @@ package com.agrocomercial.clientes.services;
 
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.ServiceUtils;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

@@ -1,7 +1,6 @@
 package com.agrocomercial.clientes.utils;
 
 import com.agrocomercial.clientes.models.BaseEntity;
-
 import java.util.List;
 
 public class ServiceUtils {
