@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface OrderService {
 
-    Order save(Order order);
-    List<Order> findByCustomerId(Integer customerId);
+  Order save(Order order);
+
+  List<Order> findByCustomerId(Integer customerId);
 }

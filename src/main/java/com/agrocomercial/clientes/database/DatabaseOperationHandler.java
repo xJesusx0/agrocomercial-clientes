@@ -5,35 +5,35 @@ import java.sql.SQLException;
 
 public class DatabaseOperationHandler {
 
-    private DatabaseOperationHandler(){}
+  private DatabaseOperationHandler() {}
 
-    public static void handleOperation(DatabaseOperation operation){
-        Connection connection = DatabaseConnector.connect();
+  public static void handleOperation(DatabaseOperation operation) {
+    Connection connection = DatabaseConnector.connect();
 
-        if (connection == null){
-            return;
-        }
-
-        try{
-            connection.setAutoCommit(false);
-            operation.execute(connection);
-            connection.commit();
-        } catch (SQLException e) {
-            try{
-                connection.rollback();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
-            System.out.println("Error durante la operacion de la base de datos");
-            e.printStackTrace();
-        }finally {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
+    if (connection == null) {
+      return;
     }
+
+    try {
+      connection.setAutoCommit(false);
+      operation.execute(connection);
+      connection.commit();
+    } catch (SQLException e) {
+      try {
+        connection.rollback();
+      } catch (SQLException ex) {
+        ex.printStackTrace();
+      }
+
+      System.out.println("Error durante la operacion de la base de datos");
+      e.printStackTrace();
+    } finally {
+      try {
+        connection.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+
+  }
 }
