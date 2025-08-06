@@ -5,14 +5,14 @@ import com.agrocomercial.clientes.repositories.impl.UserRepositoryImpl;
 
 public class RepositoryContext {
 
-    private final UserRepositoryImpl userRepository;
+  private final UserRepositoryImpl userRepository;
 
-    public RepositoryContext(){
-        userRepository = new UserRepositoryImpl();
-    }
+  public RepositoryContext() {
+    userRepository = new UserRepositoryImpl();
+  }
 
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
+  public UserRepository getUserRepository() {
+    return userRepository;
+  }
 
 }

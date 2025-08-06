@@ -6,6 +6,7 @@ import java.util.Collection;
 
 public interface OrderProductService {
 
-    OrderProduct save(OrderProduct orderProduct);
-    void saveAll(Collection<OrderProduct> orderProducts);
+  OrderProduct save(OrderProduct orderProduct);
+
+  void saveAll(Collection<OrderProduct> orderProducts);
 }

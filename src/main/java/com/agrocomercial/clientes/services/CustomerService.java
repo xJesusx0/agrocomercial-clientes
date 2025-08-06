@@ -4,6 +4,6 @@ import com.agrocomercial.clientes.models.Customer;
 
 public interface CustomerService {
 
-    Customer findByUserId(Integer userId);
+  Customer findByUserId(Integer userId);
 
 }

@@ -2,44 +2,44 @@ package com.agrocomercial.clientes.models;
 
 public class OrderProduct extends BaseEntity {
 
-    private Integer quantity;
-    private Double subtotal;
+  private Integer quantity;
+  private Double subtotal;
 
-    // FK
-    private Integer idOrder;
-    private Integer idProduct;
+  // FK
+  private Integer idOrder;
+  private Integer idProduct;
 
 
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+  public Integer getQuantity() {
+    return quantity;
+  }
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+  public void setQuantity(Integer quantity) {
+    this.quantity = quantity;
+  }
 
-    public Integer getIdOrder() {
-        return idOrder;
-    }
+  public Integer getIdOrder() {
+    return idOrder;
+  }
 
-    public void setIdOrder(Integer idOrder) {
-        this.idOrder = idOrder;
-    }
+  public void setIdOrder(Integer idOrder) {
+    this.idOrder = idOrder;
+  }
 
-    public Integer getIdProduct() {
-        return idProduct;
-    }
+  public Integer getIdProduct() {
+    return idProduct;
+  }
 
-    public void setIdProduct(Integer idProduct) {
-        this.idProduct = idProduct;
-    }
+  public void setIdProduct(Integer idProduct) {
+    this.idProduct = idProduct;
+  }
 
-    public Double getSubtotal() {
-        return subtotal;
-    }
+  public Double getSubtotal() {
+    return subtotal;
+  }
 
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
-    }
+  public void setSubtotal(Double subtotal) {
+    this.subtotal = subtotal;
+  }
 }

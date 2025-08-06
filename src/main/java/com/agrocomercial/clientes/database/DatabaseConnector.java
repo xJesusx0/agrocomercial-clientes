@@ -8,29 +8,29 @@ import java.sql.SQLException;
 
 public class DatabaseConnector {
 
-    private DatabaseConnector(){}
+  private DatabaseConnector() {}
 
-    public static Connection connect(){
+  public static Connection connect() {
 
-        Dotenv dotenv = Dotenv.load();
+    Dotenv dotenv = Dotenv.load();
 
-        String url = dotenv.get("DB_URL");
-        String user = dotenv.get("DB_USER");
-        String password = dotenv.get("DB_PASSWORD");
+    String url = dotenv.get("DB_URL");
+    String user = dotenv.get("DB_USER");
+    String password = dotenv.get("DB_PASSWORD");
 
-        Connection connection;
+    Connection connection;
 
-        try{
-            connection = DriverManager.getConnection(url, user, password);
-            return connection;
+    try {
+      connection = DriverManager.getConnection(url, user, password);
+      return connection;
 
-        } catch (SQLException e) {
-            System.out.println("Ha ocurrido un error ");
-            e.printStackTrace();
-        }
-
-        System.out.println("No se ha podido conectar con la base de datos");
-        return null;
+    } catch (SQLException e) {
+      System.out.println("Ha ocurrido un error ");
+      e.printStackTrace();
     }
+
+    System.out.println("No se ha podido conectar con la base de datos");
+    return null;
+  }
 
 }
