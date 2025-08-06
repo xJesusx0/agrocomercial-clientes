@@ -1,4 +1,4 @@
-package com.agrocomercial.clientes.services;
+package com.agrocomercial.clientes.services.impl.memory;
 
 import com.agrocomercial.clientes.models.OrderProduct;
 import com.agrocomercial.clientes.utils.ServiceUtils;
@@ -6,7 +6,7 @@ import com.agrocomercial.clientes.utils.ServiceUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderProductService {
+public class OrderProductServiceImpl {
 
     private final List<OrderProduct> orderProductList = new ArrayList<>();
 

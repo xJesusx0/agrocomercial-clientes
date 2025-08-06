@@ -1,4 +1,4 @@
-package com.agrocomercial.clientes.services.impl;
+package com.agrocomercial.clientes.services.impl.memory;
 
 import com.agrocomercial.clientes.models.User;
 import com.agrocomercial.clientes.services.UserService;

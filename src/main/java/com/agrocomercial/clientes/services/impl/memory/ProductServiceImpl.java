@@ -1,4 +1,4 @@
-package com.agrocomercial.clientes.services;
+package com.agrocomercial.clientes.services.impl.memory;
 
 import com.agrocomercial.clientes.models.Product;
 import com.agrocomercial.clientes.utils.ServiceUtils;
@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ProductService {
+public class ProductServiceImpl {
 
     private final List<Product> productList = new ArrayList<>();
 
-    public ProductService() {
+    public ProductServiceImpl() {
         productList.add(new Product(1, "Papas", "Bolsa de 1kg de papas", 5000.0));
         productList.add(new Product(2, "Tomates", "Canastilla de tomates frescos (5kg)", 12000.0));
         productList.add(new Product(3, "Cebolla cabezona", "Bolsa de cebolla cabezona (2kg)", 7000.0));

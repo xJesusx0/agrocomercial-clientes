@@ -5,6 +5,10 @@ import com.agrocomercial.clientes.controller.orders.OrderProductController;
 import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.controller.products.ProductController;
 import com.agrocomercial.clientes.services.*;
+import com.agrocomercial.clientes.services.impl.memory.DocumentTypeServiceImpl;
+import com.agrocomercial.clientes.services.impl.memory.OrderProductServiceImpl;
+import com.agrocomercial.clientes.services.impl.memory.OrderServiceImpl;
+import com.agrocomercial.clientes.services.impl.memory.ProductServiceImpl;
 import com.agrocomercial.clientes.views.customers.CustomerView;
 import com.agrocomercial.clientes.views.auth.LoginView;
 import com.agrocomercial.clientes.views.main.MainMenuView;
@@ -25,12 +29,12 @@ public class AppContext {
 
     private final LoggedUser loggedUser = new LoggedUser();
 
-    private final DocumentTypeService documentTypeService;
+    private final DocumentTypeServiceImpl documentTypeService;
     private final UserService userService;
     private final CustomerService customerService;
-    private final OrderProductService orderProductService;
-    private final ProductService productService;
-    private final OrderService orderService;
+    private final OrderProductServiceImpl orderProductService;
+    private final ProductServiceImpl productService;
+    private final OrderServiceImpl orderService;
 
     private final AuthController authController;
     private final OrderProductController orderProductController;
@@ -86,12 +90,12 @@ public class AppContext {
     private AppContext() {
         ServiceContext serviceContext = new ServiceContext();
 
-        documentTypeService = new DocumentTypeService();
+        documentTypeService = new DocumentTypeServiceImpl();
         userService = serviceContext.getUserService();
-        customerService = new CustomerService();
-        orderService = new OrderService();
-        productService = new ProductService();
-        orderProductService = new OrderProductService();
+        customerService = serviceContext.getCustomerService();
+        orderService = new OrderServiceImpl();
+        productService = new ProductServiceImpl();
+        orderProductService = new OrderProductServiceImpl();
 
         orderProductController = new OrderProductController(orderProductService, productService, orderService, loggedUser);
         authController = new AuthController(userService, customerService, loggedUser);

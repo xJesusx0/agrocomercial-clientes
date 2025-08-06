@@ -1,4 +1,4 @@
-package com.agrocomercial.clientes.services.impl;
+package com.agrocomercial.clientes.services.impl.database;
 
 import com.agrocomercial.clientes.models.User;
 import com.agrocomercial.clientes.repositories.UserRepository;

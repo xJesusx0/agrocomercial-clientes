@@ -1,4 +1,4 @@
-package com.agrocomercial.clientes.services;
+package com.agrocomercial.clientes.services.impl.memory;
 
 import com.agrocomercial.clientes.models.Order;
 
@@ -7,7 +7,7 @@ import java.util.List;
 
 import static com.agrocomercial.clientes.utils.ServiceUtils.getLastId;
 
-public class OrderService {
+public class OrderServiceImpl {
 
     private final List<Order> orderList = new ArrayList<>();
 
