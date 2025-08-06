@@ -1,12 +1,14 @@
 package com.agrocomercial.clientes.services.impl.memory;
 
 import com.agrocomercial.clientes.models.OrderProduct;
+import com.agrocomercial.clientes.services.OrderProductService;
 import com.agrocomercial.clientes.utils.ServiceUtils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class OrderProductServiceImpl {
+public class OrderProductServiceImpl implements OrderProductService {
 
     private final List<OrderProduct> orderProductList = new ArrayList<>();
 
@@ -20,6 +22,7 @@ public class OrderProductServiceImpl {
                 .toList();
     }
 
+    @Override
     public OrderProduct save(OrderProduct orderProduct) {
         Integer id = ServiceUtils.getLastId(orderProductList);
 
@@ -28,7 +31,8 @@ public class OrderProductServiceImpl {
         return orderProduct;
     }
 
-    public void saveAll(List<OrderProduct> orderProductList) {
+    @Override
+    public void saveAll(Collection<OrderProduct> orderProductList) {
         orderProductList.forEach(this::save);
     }
 

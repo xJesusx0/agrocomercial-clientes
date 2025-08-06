@@ -5,6 +5,7 @@
 package com.agrocomercial.clientes.views.customers;
 
 import com.agrocomercial.clientes.models.DocumentType;
+import com.agrocomercial.clientes.services.DocumentTypeService;
 import com.agrocomercial.clientes.services.impl.memory.DocumentTypeServiceImpl;
 
 import java.util.List;
@@ -15,9 +16,9 @@ import java.util.List;
  */
 public class CustomerView extends javax.swing.JFrame {
     
-    private final transient DocumentTypeServiceImpl documentTypeService;
+    private final transient DocumentTypeService documentTypeService;
 
-    public CustomerView(DocumentTypeServiceImpl documentTypeService) {
+    public CustomerView(DocumentTypeService documentTypeService) {
         initComponents();
 
         this.documentTypeService = documentTypeService;

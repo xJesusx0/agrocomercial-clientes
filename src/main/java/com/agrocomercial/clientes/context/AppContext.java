@@ -29,12 +29,12 @@ public class AppContext {
 
     private final LoggedUser loggedUser = new LoggedUser();
 
-    private final DocumentTypeServiceImpl documentTypeService;
+    private final DocumentTypeService documentTypeService;
     private final UserService userService;
     private final CustomerService customerService;
-    private final OrderProductServiceImpl orderProductService;
-    private final ProductServiceImpl productService;
-    private final OrderServiceImpl orderService;
+    private final OrderProductService orderProductService;
+    private final ProductService productService;
+    private final OrderService orderService;
 
     private final AuthController authController;
     private final OrderProductController orderProductController;
@@ -90,12 +90,12 @@ public class AppContext {
     private AppContext() {
         ServiceContext serviceContext = new ServiceContext();
 
-        documentTypeService = new DocumentTypeServiceImpl();
+        documentTypeService = serviceContext.getDocumentTypeService();
         userService = serviceContext.getUserService();
         customerService = serviceContext.getCustomerService();
-        orderService = new OrderServiceImpl();
-        productService = new ProductServiceImpl();
-        orderProductService = new OrderProductServiceImpl();
+        orderService = serviceContext.getOrderService();
+        productService = serviceContext.getProductService();
+        orderProductService = serviceContext.getOrderProductService();
 
         orderProductController = new OrderProductController(orderProductService, productService, orderService, loggedUser);
         authController = new AuthController(userService, customerService, loggedUser);

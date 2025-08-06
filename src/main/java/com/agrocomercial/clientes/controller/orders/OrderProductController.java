@@ -4,6 +4,9 @@ import com.agrocomercial.clientes.controller.auth.LoggedUser;
 import com.agrocomercial.clientes.events.OrderCreatedEventListener;
 import com.agrocomercial.clientes.events.ProductAddedToOrderEventListener;
 import com.agrocomercial.clientes.models.*;
+import com.agrocomercial.clientes.services.OrderProductService;
+import com.agrocomercial.clientes.services.OrderService;
+import com.agrocomercial.clientes.services.ProductService;
 import com.agrocomercial.clientes.services.impl.memory.OrderProductServiceImpl;
 import com.agrocomercial.clientes.services.impl.memory.OrderServiceImpl;
 import com.agrocomercial.clientes.services.impl.memory.ProductServiceImpl;
@@ -14,9 +17,9 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class OrderProductController {
 
-    private final OrderProductServiceImpl orderProductService;
-    private final ProductServiceImpl productService;
-    private final OrderServiceImpl orderService;
+    private final OrderProductService orderProductService;
+    private final ProductService productService;
+    private final OrderService orderService;
 
     private final List<ProductAddedToOrderEventListener> productAddedToOrderEventListeners = new ArrayList<>();
     private final List<OrderCreatedEventListener> orderCreatedEventListeners = new ArrayList<>();
@@ -25,7 +28,7 @@ public class OrderProductController {
 
     private final LoggedUser loggedUser;
 
-    public OrderProductController(OrderProductServiceImpl orderProductService, ProductServiceImpl productService, OrderServiceImpl orderService, LoggedUser loggedUser) {
+    public OrderProductController(OrderProductService orderProductService, ProductService productService, OrderService orderService, LoggedUser loggedUser) {
         this.orderProductService = orderProductService;
         this.productService = productService;
         this.orderService = orderService;

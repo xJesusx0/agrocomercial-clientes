@@ -1,13 +1,14 @@
 package com.agrocomercial.clientes.services.impl.memory;
 
 import com.agrocomercial.clientes.models.Product;
+import com.agrocomercial.clientes.services.ProductService;
 import com.agrocomercial.clientes.utils.ServiceUtils;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class ProductServiceImpl {
+public class ProductServiceImpl implements ProductService {
 
     private final List<Product> productList = new ArrayList<>();
 
@@ -24,6 +25,7 @@ public class ProductServiceImpl {
         productList.add(new Product(10, "Fertilizante orgánico", "Saco de fertilizante compostado (40kg)", 52000.0));
     }
 
+    @Override
     public List<Product> findAll() {
         return productList;
     }
@@ -34,6 +36,7 @@ public class ProductServiceImpl {
                 .toList();
     }
 
+    @Override
     public Product save(Product product) {
         Integer id = ServiceUtils.getLastId(productList);
         product.setId(id);
