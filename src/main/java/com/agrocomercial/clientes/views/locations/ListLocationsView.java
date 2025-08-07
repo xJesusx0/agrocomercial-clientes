@@ -5,7 +5,6 @@ import com.agrocomercial.clientes.controller.locations.LocationController;
 import com.agrocomercial.clientes.models.Location;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
@@ -15,22 +14,24 @@ public class ListLocationsView extends JFrame {
     private final AppContext appContext;
     private final LocationController locationController;
 
+    // Variables declaration - do not modify//GEN-BEGIN:variables
     // Componentes de la interfaz
     private JTable tblLocations;
     private DefaultTableModel tableModel;
     private JButton btnClose;
+    // End of variables declaration//GEN-END:variables
 
     public ListLocationsView(AppContext appContext, LocationController locationController) {
         this.appContext = appContext;
         this.locationController = locationController;
 
-        initComponents();
         setupTable();
-        setupLayout();
+        initComponents();
         setupListeners();
         loadData();
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         setTitle("Lista de Ubicaciones");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -44,43 +45,41 @@ public class ListLocationsView extends JFrame {
         btnClose.setBackground(new Color(149, 165, 166));
         btnClose.setForeground(Color.WHITE);
         btnClose.setFocusPainted(false);
-    }
-
-    private void setupLayout() {
-        setLayout(new BorderLayout());
-
-        // Panel principal con padding
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        mainPanel.setBorder(new EmptyBorder(20, 20, 20, 20));
-
-        // Título
-        JLabel lblTitle = new JLabel("Ubicaciones del Sistema");
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 18));
-        lblTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainPanel.add(lblTitle);
-        mainPanel.add(Box.createVerticalStrut(20));
-
-        // Panel de botones superiores
-        JPanel topButtonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-
-        mainPanel.add(topButtonPanel);
-        mainPanel.add(Box.createVerticalStrut(10));
-
-        // Tabla
-        JScrollPane scrollPane = new JScrollPane(tblLocations);
-        scrollPane.setPreferredSize(new Dimension(650, 300));
-        mainPanel.add(scrollPane);
-        mainPanel.add(Box.createVerticalStrut(10));
-
-        // Panel de botones inferiores
-        JPanel bottomButtonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        bottomButtonPanel.add(btnClose);
-
-        mainPanel.add(bottomButtonPanel);
-
-        add(mainPanel, BorderLayout.CENTER);
-    }
+        
+        // Crear JScrollPane con la tabla
+        JScrollPane jScrollPane1 = new JScrollPane();
+        jScrollPane1.setViewportView(tblLocations);
+        jScrollPane1.setPreferredSize(new Dimension(650, 300));
+        jScrollPane1.setVisible(true);
+        
+        // Configurar el layout y agregar componentes
+        setLayout(new javax.swing.GroupLayout(getContentPane()));
+        getContentPane().setLayout(new javax.swing.GroupLayout(getContentPane()));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnClose)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnClose)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+    }// </editor-fold>//GEN-END:initComponents
 
     private void setupTable() {
         String[] columnNames = {"ID", "Nombre", "Dirección"};
@@ -94,6 +93,8 @@ public class ListLocationsView extends JFrame {
         tblLocations = new JTable(tableModel);
         tblLocations.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         tblLocations.getTableHeader().setReorderingAllowed(false);
+        tblLocations.setVisible(true);
+        tblLocations.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         // Configurar el ancho de las columnas
         tblLocations.getColumnModel().getColumn(0).setPreferredWidth(50); // ID
@@ -101,13 +102,13 @@ public class ListLocationsView extends JFrame {
         tblLocations.getColumnModel().getColumn(2).setPreferredWidth(400); // Dirección
     }
 
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:setupListeners
     private void setupListeners() {
         btnClose.addActionListener(e -> {
             dispose();
             appContext.getMainMenuView().setVisible(true);
         });
-
-    }
+    }// </editor-fold>//GEN-END:setupListeners
 
     private void loadData() {
         tableModel.setRowCount(0);
