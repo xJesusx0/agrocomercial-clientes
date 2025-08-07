@@ -101,7 +101,7 @@ public class MainMenuView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void customerRedirectionActionPerformed() {//GEN-FIRST:event_customerRedirectionActionPerformed
-        validateRedirectToCustomerViews(localAppContext.getCustomerView());
+        validateRedirectToAdminViews(localAppContext.getCustomerView());
     }//GEN-LAST:event_customerRedirectionActionPerformed
 
     private void ordersRedirectionActionPerformed() {//GEN-FIRST:event_ordersRedirectionActionPerformed
@@ -109,7 +109,7 @@ public class MainMenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_ordersRedirectionActionPerformed
 
     private void productsRedirectionActionPerformed() {//GEN-FIRST:event_productsRedirectionActionPerformed
-        WindowUtils.closeAndShowPanel(this, localAppContext.getListProductsView());
+        validateRedirectToAdminViews(localAppContext.getListProductsView());
     }//GEN-LAST:event_productsRedirectionActionPerformed
 
     private void administratorsRedirectionActionPerformed() {//GEN-FIRST:event_administratorsRedirectionActionPerformed
