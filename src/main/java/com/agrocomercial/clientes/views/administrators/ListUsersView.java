@@ -9,8 +9,6 @@ import com.agrocomercial.clientes.services.CustomerService;
 import com.agrocomercial.clientes.services.UserService;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.util.List;
 
 public class ListUsersView extends JFrame {
@@ -21,10 +19,9 @@ public class ListUsersView extends JFrame {
     private final CustomerService customerService;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    // Componentes de la interfaz
-    private JTable tblAdministrators;
-    private DefaultTableModel tableModel;
-    private JButton btnClose;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblAdministrators;
     // End of variables declaration//GEN-END:variables
 
     public ListUsersView(AppContext appContext, AdministratorController administratorController) {
@@ -33,7 +30,6 @@ public class ListUsersView extends JFrame {
         this.userService = appContext.getServiceContext().getUserService();
         this.customerService = appContext.getServiceContext().getCustomerService();
 
-        setupTable();
         initComponents();
         setupListeners();
         loadData();
@@ -41,94 +37,109 @@ public class ListUsersView extends JFrame {
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblAdministrators = new javax.swing.JTable();
+        btnClose = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestión de Usuarios del Sistema");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(900, 600);
-        setLocationRelativeTo(null);
         setResizable(false);
 
-        btnClose = new JButton("Cerrar");
+        tblAdministrators.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        // Estilo de botones
-        btnClose.setBackground(new Color(149, 165, 166));
-        btnClose.setForeground(Color.WHITE);
-        btnClose.setFocusPainted(false);
-        
-        // Crear JScrollPane con la tabla
-        JScrollPane jScrollPane1 = new JScrollPane();
+            },
+            new String [] {
+                "ID Usuario", "Username", "Rol", "ID Persona", "Nombre", "Apellido", "Teléfono", "Identificación"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblAdministrators.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblAdministrators);
-        jScrollPane1.setPreferredSize(new Dimension(850, 400));
-        jScrollPane1.setVisible(true);
-        
-        // Configurar el layout y agregar componentes
-        setLayout(new javax.swing.GroupLayout(getContentPane()));
-        getContentPane().setLayout(new javax.swing.GroupLayout(getContentPane()));
+        if (tblAdministrators.getColumnModel().getColumnCount() > 0) {
+            tblAdministrators.getColumnModel().getColumn(0).setResizable(false);
+            tblAdministrators.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tblAdministrators.getColumnModel().getColumn(1).setResizable(false);
+            tblAdministrators.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tblAdministrators.getColumnModel().getColumn(2).setResizable(false);
+            tblAdministrators.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tblAdministrators.getColumnModel().getColumn(3).setResizable(false);
+            tblAdministrators.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tblAdministrators.getColumnModel().getColumn(4).setResizable(false);
+            tblAdministrators.getColumnModel().getColumn(4).setPreferredWidth(120);
+            tblAdministrators.getColumnModel().getColumn(5).setResizable(false);
+            tblAdministrators.getColumnModel().getColumn(5).setPreferredWidth(120);
+            tblAdministrators.getColumnModel().getColumn(6).setResizable(false);
+            tblAdministrators.getColumnModel().getColumn(6).setPreferredWidth(100);
+            tblAdministrators.getColumnModel().getColumn(7).setResizable(false);
+            tblAdministrators.getColumnModel().getColumn(7).setPreferredWidth(100);
+        }
+
+        btnClose.setBackground(new java.awt.Color(255, 51, 51));
+        btnClose.setFont(new java.awt.Font("sansserif", 1, 13)); // NOI18N
+        btnClose.setForeground(new java.awt.Color(255, 255, 255));
+        btnClose.setText("Cerrar");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 850, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnClose)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnClose)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void setupTable() {
-        String[] columnNames = {"ID Usuario", "Username", "Rol", "ID Persona", "Nombre", "Apellido", "Teléfono",
-            "Identificación"};
-        tableModel = new DefaultTableModel(columnNames, 0) {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return false; // Hacer la tabla no editable
-            }
-        };
-
-        tblAdministrators = new JTable(tableModel);
-        tblAdministrators.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        tblAdministrators.getTableHeader().setReorderingAllowed(false);
-        tblAdministrators.setVisible(true);
-        tblAdministrators.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        // Configurar el ancho de las columnas
-        tblAdministrators.getColumnModel().getColumn(0).setPreferredWidth(80); // ID Usuario
-        tblAdministrators.getColumnModel().getColumn(1).setPreferredWidth(100); // Username
-        tblAdministrators.getColumnModel().getColumn(2).setPreferredWidth(100); // Rol
-        tblAdministrators.getColumnModel().getColumn(3).setPreferredWidth(80); // ID Persona
-        tblAdministrators.getColumnModel().getColumn(4).setPreferredWidth(120); // Nombre
-        tblAdministrators.getColumnModel().getColumn(5).setPreferredWidth(120); // Apellido
-        tblAdministrators.getColumnModel().getColumn(6).setPreferredWidth(100); // Teléfono
-        tblAdministrators.getColumnModel().getColumn(7).setPreferredWidth(100); // Identificación
-    }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:setupListeners
     private void setupListeners() {
-        btnClose.addActionListener(evt -> btnCloseActionPerformed());
+        // Los listeners ya están configurados en initComponents()
     }// </editor-fold>//GEN-END:setupListeners
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:btnCloseActionPerformed
-    private void btnCloseActionPerformed() {
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
         appContext.getMainMenuView().setVisible(true);
     }// </editor-fold>//GEN-END:btnCloseActionPerformed
 
     private void loadData() {
-        tableModel.setRowCount(0);
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblAdministrators.getModel();
+        model.setRowCount(0);
 
         try {
             List<User> users = userService.findAll();
@@ -172,7 +183,7 @@ public class ListUsersView extends JFrame {
                     phone,
                     identification
                 };
-                tableModel.addRow(row);
+                model.addRow(row);
             }
 
         } catch (Exception ex) {
