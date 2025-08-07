@@ -70,7 +70,7 @@ public class CustomerView extends javax.swing.JFrame {
 
         jLabel4.setText("Documento");
 
-        documentTypeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        documentTypeField.setModel(new javax.swing.DefaultComboBoxModel<>());
 
         closeButton.setText("Cerrar");
         closeButton.addActionListener(evt -> closeButtonActionPerformed());
