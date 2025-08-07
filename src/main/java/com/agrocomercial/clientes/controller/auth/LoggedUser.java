@@ -9,7 +9,7 @@ public class LoggedUser {
     private Integer userId;
     private String username;
     private Integer customerId;
-    private Integer adminId;
+    private Integer administratorId;
     private final Set<Roles> roles = new HashSet<>();
 
     public Integer getUserId() {
@@ -36,12 +36,12 @@ public class LoggedUser {
         this.customerId = customerId;
     }
 
-    public Integer getAdminId() {
-        return adminId;
+    public Integer getAdministratorId() {
+        return administratorId;
     }
 
-    public void setAdminId(Integer adminId) {
-        this.adminId = adminId;
+    public void setAdministratorId(Integer administratorId) {
+        this.administratorId = administratorId;
     }
 
     public Set<Roles> getRoles() {
@@ -54,5 +54,13 @@ public class LoggedUser {
         }
 
         roles.add(role);
+    }
+
+    public void clear() {
+        this.userId = null;
+        this.username = null;
+        this.customerId = null;
+        this.administratorId = null;
+        this.roles.clear();
     }
 }

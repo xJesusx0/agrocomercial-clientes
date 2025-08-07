@@ -105,10 +105,13 @@ public class LoginView extends JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void clearButtonActionPerformed() {//GEN-FIRST:event_clearButtonActionPerformed
+        clearFields();
+    }//GEN-LAST:event_clearButtonActionPerformed
+
+    public void clearFields() {
         usernameField.setText("");
         passwordField.setText("");
-
-    }//GEN-LAST:event_clearButtonActionPerformed
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField passwordField;

@@ -4,6 +4,7 @@
  */
 package com.agrocomercial.clientes.views.customers;
 
+import com.agrocomercial.clientes.context.AppContext;
 import com.agrocomercial.clientes.models.DocumentType;
 import com.agrocomercial.clientes.services.DocumentTypeService;
 import com.agrocomercial.clientes.services.impl.memory.DocumentTypeServiceImpl;
@@ -17,13 +18,20 @@ import java.util.List;
 public class CustomerView extends javax.swing.JFrame {
     
     private final transient DocumentTypeService documentTypeService;
+    private final transient AppContext appContext;
 
     public CustomerView(DocumentTypeService documentTypeService) {
-        initComponents();
-
         this.documentTypeService = documentTypeService;
+        this.appContext = null;
+        initComponents();
         loadDocumentTypes();
+    }
 
+    public CustomerView(AppContext appContext, DocumentTypeService documentTypeService) {
+        this.appContext = appContext;
+        this.documentTypeService = documentTypeService;
+        initComponents();
+        loadDocumentTypes();
     }
 
     private void loadDocumentTypes () {
@@ -50,6 +58,7 @@ public class CustomerView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         documentType = new javax.swing.JTextField();
         documentTypeField = new javax.swing.JComboBox<>();
+        closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +71,9 @@ public class CustomerView extends javax.swing.JFrame {
         jLabel4.setText("Documento");
 
         documentTypeField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        closeButton.setText("Cerrar");
+        closeButton.addActionListener(evt -> closeButtonActionPerformed());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,6 +100,10 @@ public class CustomerView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(documentType, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(70, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(closeButton)
+                    .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,12 +124,22 @@ public class CustomerView extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(documentType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(closeButton)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void closeButtonActionPerformed() {
+        if (appContext != null) {
+            dispose();
+            appContext.getMainMenuView().setVisible(true);
+        } else {
+            dispose();
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField clientNameField;
@@ -124,5 +150,6 @@ public class CustomerView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField lastnameField;
+    private javax.swing.JButton closeButton;
     // End of variables declaration//GEN-END:variables
 }

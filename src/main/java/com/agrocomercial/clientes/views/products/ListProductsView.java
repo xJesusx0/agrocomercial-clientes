@@ -49,10 +49,12 @@ public class ListProductsView extends javax.swing.JFrame implements ProductCreat
     private void initComponents() {
         javax.swing.JScrollPane jScrollPane1;
         javax.swing.JButton addProductButton;
+        javax.swing.JButton closeButton;
 
         jScrollPane1 = new javax.swing.JScrollPane();
         productsTable = new javax.swing.JTable();
         addProductButton = new javax.swing.JButton();
+        closeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +93,9 @@ public class ListProductsView extends javax.swing.JFrame implements ProductCreat
         addProductButton.setText("agregar");
         addProductButton.addActionListener(evt -> addProductButtonActionPerformed());
 
+        closeButton.setText("Cerrar");
+        closeButton.addActionListener(evt -> closeButtonActionPerformed());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,6 +106,8 @@ public class ListProductsView extends javax.swing.JFrame implements ProductCreat
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(addProductButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(closeButton)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -108,7 +115,9 @@ public class ListProductsView extends javax.swing.JFrame implements ProductCreat
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addProductButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addProductButton)
+                    .addComponent(closeButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -119,6 +128,11 @@ public class ListProductsView extends javax.swing.JFrame implements ProductCreat
 
     private void addProductButtonActionPerformed() {
         WindowUtils.closeAndShowPanel(this, localAppContext.getCreateProductView());
+    }
+
+    private void closeButtonActionPerformed() {
+        dispose();
+        localAppContext.getMainMenuView().setVisible(true);
     }
 
     private javax.swing.JTable productsTable;
