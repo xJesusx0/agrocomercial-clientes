@@ -1,4 +1,4 @@
-package com.agrocomercial.clientes.repositories.impl;
+package com.agrocomercial.clientes.repositories.impl.mysql;
 
 import com.agrocomercial.clientes.database.DatabaseOperation;
 import com.agrocomercial.clientes.database.DatabaseOperationHandler;

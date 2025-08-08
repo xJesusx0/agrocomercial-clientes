@@ -1,7 +1,6 @@
 package com.agrocomercial.clientes.context;
 
 import com.agrocomercial.clientes.repositories.UserRepository;
-import com.agrocomercial.clientes.repositories.impl.UserRepositoryImpl;
 import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerUserRepositoryImpl;
 
 public class RepositoryContext {
