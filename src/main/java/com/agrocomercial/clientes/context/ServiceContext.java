@@ -18,8 +18,8 @@ public class ServiceContext {
     public ServiceContext() {
         RepositoryContext repositoryContext = new RepositoryContext();
 
-        // userService = new DatabaseUserServiceImpl(repositoryContext.getUserRepository());
-        userService = new UserServiceImpl();
+        userService = new DatabaseUserServiceImpl(repositoryContext.getUserRepository());
+        //userService = new UserServiceImpl();
         customerService = new CustomerServiceImpl();
         documentTypeService = new DocumentTypeServiceImpl();
         orderProductService = new OrderProductServiceImpl();
