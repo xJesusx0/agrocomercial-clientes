@@ -17,7 +17,7 @@ public class SqlServerLocationRepositoryImpl implements LocationRepository {
     public Optional<Location> findById(Integer id) {
         AtomicReference<Location> item = new AtomicReference<>();
         DatabaseOperation op = connection -> {
-            final String query = "SELECT * FROM sucursales WHERE id_sucursal = ?";
+            final String query = "SELECT * FROM sedes WHERE id_sede = ?";
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
@@ -45,9 +45,9 @@ public class SqlServerLocationRepositoryImpl implements LocationRepository {
     }
 
     private Location mapRow(ResultSet rs) throws java.sql.SQLException {
-        Integer id = rs.getInt("id_sucursal");
-        String name = rs.getString("nombre_sucursal");
-        String address = rs.getString("direccion");
+        Integer id = rs.getInt("id_sede");
+        String name = rs.getString("nombre_sede");
+        String address = rs.getString("direccion_sede");
         return new Location(id, name, address);
     }
 } 

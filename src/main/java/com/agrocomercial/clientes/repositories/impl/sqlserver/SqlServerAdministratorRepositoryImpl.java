@@ -67,7 +67,7 @@ public class SqlServerAdministratorRepositoryImpl implements AdministratorReposi
         String phone = rs.getString("telefono");
         String identification = rs.getString("numero_documento");
         Integer idDocumentType = rs.getInt("id_tipo_documento");
-        Integer idLocation = rs.getInt("id_sucursal");
+        Integer idLocation = rs.getInt("id_sede");
         Integer idUser = rs.getInt("id_usuario");
         return new Administrator(id, name, lastname, phone, identification, idDocumentType, idLocation, idUser);
     }
