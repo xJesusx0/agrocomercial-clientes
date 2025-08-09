@@ -30,6 +30,10 @@ public class Customer extends BaseEntity {
         this.idUser = idUser;
     }
 
+    public Customer() {
+
+    }
+
     public String getName() {
         return name;
     }
