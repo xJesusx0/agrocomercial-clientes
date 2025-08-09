@@ -33,7 +33,7 @@ public class SqlServerLocationRepositoryImpl implements LocationRepository {
     public List<Location> findAll() {
         List<Location> list = new ArrayList<>();
         DatabaseOperation op = connection -> {
-            final String query = "SELECT * FROM sucursales";
+            final String query = "SELECT * FROM sedes";
             PreparedStatement ps = connection.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

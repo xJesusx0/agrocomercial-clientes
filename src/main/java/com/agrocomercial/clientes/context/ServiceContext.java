@@ -1,12 +1,7 @@
 package com.agrocomercial.clientes.context;
 
 import com.agrocomercial.clientes.services.*;
-import com.agrocomercial.clientes.services.impl.database.DatabaseProductServiceImpl;
-import com.agrocomercial.clientes.services.impl.database.DatabaseUserServiceImpl;
-import com.agrocomercial.clientes.services.impl.database.DatabaseAdministratorServiceImpl;
-import com.agrocomercial.clientes.services.impl.database.DatabaseLocationServiceImpl;
-import com.agrocomercial.clientes.services.impl.database.DatabaseDocumentTypeServiceImpl;
-import com.agrocomercial.clientes.services.impl.database.DatabaseCustomerServiceImpl;
+import com.agrocomercial.clientes.services.impl.database.*;
 import com.agrocomercial.clientes.services.impl.memory.*;
 
 public class ServiceContext {
@@ -26,8 +21,8 @@ public class ServiceContext {
         userService = new DatabaseUserServiceImpl(repositoryContext.getUserRepository());
         customerService = new DatabaseCustomerServiceImpl(repositoryContext.getCustomerRepository());
         documentTypeService = new DatabaseDocumentTypeServiceImpl(repositoryContext.getDocumentTypeRepository());
-        orderProductService = new OrderProductServiceImpl();
-        orderService = new OrderServiceImpl();
+        orderProductService = new DatabaseOrderProductServiceImpl(repositoryContext.getOrderProductRepository());
+        orderService = new DatabaseOrderServiceImpl(repositoryContext.getOrderRepository());
         productService = new DatabaseProductServiceImpl(repositoryContext.getProductRepository());
         administratorService = new DatabaseAdministratorServiceImpl(repositoryContext.getAdministratorRepository());
         locationService = new DatabaseLocationServiceImpl(repositoryContext.getLocationRepository());

@@ -6,12 +6,16 @@ import com.agrocomercial.clientes.repositories.AdministratorRepository;
 import com.agrocomercial.clientes.repositories.LocationRepository;
 import com.agrocomercial.clientes.repositories.DocumentTypeRepository;
 import com.agrocomercial.clientes.repositories.CustomerRepository;
+import com.agrocomercial.clientes.repositories.OrderRepository;
+import com.agrocomercial.clientes.repositories.OrderProductRepository;
 import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerProductRepositoryImpl;
 import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerUserRepositoryImpl;
 import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerAdministratorRepositoryImpl;
 import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerLocationRepositoryImpl;
 import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerDocumentTypeRepositoryImpl;
 import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerCustomerRepositoryImpl;
+import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerOrderRepositoryImpl;
+import com.agrocomercial.clientes.repositories.impl.sqlserver.SqlServerOrderProductRepositoryImpl;
 
 public class RepositoryContext {
 
@@ -21,6 +25,8 @@ public class RepositoryContext {
     private final LocationRepository locationRepository;
     private final DocumentTypeRepository documentTypeRepository;
     private final CustomerRepository customerRepository;
+    private final OrderRepository orderRepository;
+    private final OrderProductRepository orderProductRepository;
 
     public RepositoryContext(){
         userRepository = new SqlServerUserRepositoryImpl();
@@ -29,6 +35,8 @@ public class RepositoryContext {
         locationRepository = new SqlServerLocationRepositoryImpl();
         documentTypeRepository = new SqlServerDocumentTypeRepositoryImpl();
         customerRepository = new SqlServerCustomerRepositoryImpl();
+        orderRepository = new SqlServerOrderRepositoryImpl();
+        orderProductRepository = new SqlServerOrderProductRepositoryImpl();
     }
 
     public UserRepository getUserRepository() {
@@ -53,5 +61,13 @@ public class RepositoryContext {
 
     public CustomerRepository getCustomerRepository() {
         return customerRepository;
+    }
+
+    public OrderRepository getOrderRepository() {
+        return orderRepository;
+    }
+
+    public OrderProductRepository getOrderProductRepository() {
+        return orderProductRepository;
     }
 }
