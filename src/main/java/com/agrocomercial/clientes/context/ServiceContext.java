@@ -1,6 +1,7 @@
 package com.agrocomercial.clientes.context;
 
 import com.agrocomercial.clientes.services.*;
+import com.agrocomercial.clientes.services.impl.database.DatabaseProductServiceImpl;
 import com.agrocomercial.clientes.services.impl.memory.*;
 import com.agrocomercial.clientes.services.impl.database.DatabaseUserServiceImpl;
 
@@ -24,7 +25,7 @@ public class ServiceContext {
         documentTypeService = new DocumentTypeServiceImpl();
         orderProductService = new OrderProductServiceImpl();
         orderService = new OrderServiceImpl();
-        productService = new ProductServiceImpl();
+        productService = new DatabaseProductServiceImpl(repositoryContext.getProductRepository());
         administratorService = new AdministratorServiceImpl();
         locationService = new LocationServiceImpl();
     }
