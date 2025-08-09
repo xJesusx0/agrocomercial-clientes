@@ -7,6 +7,8 @@ import com.agrocomercial.clientes.repositories.UserRepository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -33,5 +35,23 @@ public class SqlServerUserRepositoryImpl implements UserRepository {
 		DatabaseOperationHandler.handleOperation(findUserByUsernameAndPassword);
 
 		return Optional.ofNullable(user.get());
+	}
+
+	@Override
+	public List<User> findAll() {
+		List<User> users = new ArrayList<>();
+		DatabaseOperation op = connection -> {
+			final String query = "SELECT * FROM usuarios";
+			PreparedStatement ps = connection.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				Integer id = rs.getInt("id_usuario");
+				String username = rs.getString("nombre_usuario");
+				String password = rs.getString("contraseña");
+				users.add(new User(id, username, password));
+			}
+		};
+		DatabaseOperationHandler.handleOperation(op);
+		return users;
 	}
 }
