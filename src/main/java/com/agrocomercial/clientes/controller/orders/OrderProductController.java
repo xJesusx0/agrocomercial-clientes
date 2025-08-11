@@ -7,9 +7,6 @@ import com.agrocomercial.clientes.models.*;
 import com.agrocomercial.clientes.services.OrderProductService;
 import com.agrocomercial.clientes.services.OrderService;
 import com.agrocomercial.clientes.services.ProductService;
-import com.agrocomercial.clientes.services.impl.memory.OrderProductServiceImpl;
-import com.agrocomercial.clientes.services.impl.memory.OrderServiceImpl;
-import com.agrocomercial.clientes.services.impl.memory.ProductServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,21 +34,14 @@ public class OrderProductController {
 
     public void saveOrder(Long orderNumber){
         Integer customerId = getCustomerId();
-
-        AtomicReference<Double> subtotal = new AtomicReference<>(0.0);
-        orderProductListToSave.forEach(orderProduct -> subtotal.updateAndGet(v -> v + orderProduct.getSubtotal()));
-        Order order = new Order(orderNumber, customerId, subtotal.get());
-        order.setIdCustomer(customerId);
-        order = orderService.save(order);
-
-        Integer id = order.getId();
-
-        orderProductListToSave.forEach(orderProduct->
-                orderProduct.setIdOrder(id)
-        );
-
-        orderProductService.saveAll(orderProductListToSave);
+        
+        // Use the new transactional method
+        Order order = orderService.createWithProducts(orderNumber, customerId, orderProductListToSave);
+        
         emitOnOrderCreated(order);
+        
+        // Clear the list after successful save
+        orderProductListToSave.clear();
     }
 
     private Integer getCustomerId(){

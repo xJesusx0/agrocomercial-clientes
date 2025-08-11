@@ -33,7 +33,9 @@ public class SqlServerOrderRepositoryImpl implements OrderRepository {
         List<Order> list = new ArrayList<>();
         DatabaseOperation op = connection -> {
             final String sql =
-                    "SELECT p.id_pedido, p.numero_orden, p.id_comprador, SUM(pr.precio) AS subtotal " +
+                    "SELECT p.id_pedido, p.numero_orden, p.id_comprador, " +
+                    "       SUM(pp.cantidad * pr.precio) AS subtotal, " +
+                    "       SUM(pp.cantidad) AS total_quantity " +
                     "FROM pedidos p " +
                     "LEFT JOIN pedidos_productos pp ON pp.id_pedido = p.id_pedido " +
                     "LEFT JOIN productos pr ON pr.id_producto = pp.id_producto " +
@@ -47,8 +49,14 @@ public class SqlServerOrderRepositoryImpl implements OrderRepository {
                 Long orderNumber = rs.getLong("numero_orden");
                 Integer idCustomer = rs.getInt("id_comprador");
                 Double subtotal = rs.getDouble("subtotal");
-                if (rs.wasNull()) subtotal = 0.0;
-                list.add(new Order(id, orderNumber, idCustomer, subtotal));
+                Integer totalQuantity = rs.getInt("total_quantity");
+                
+                if (rs.wasNull()) {
+                    subtotal = 0.0;
+                    totalQuantity = 0;
+                }
+                
+                list.add(new Order(id, orderNumber, idCustomer, subtotal, totalQuantity));
             }
         };
         DatabaseOperationHandler.handleOperation(op);

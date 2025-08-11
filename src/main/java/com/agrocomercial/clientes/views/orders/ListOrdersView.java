@@ -45,7 +45,7 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
         List<Order> orders = orderProductController.getOrders();
 
         orders.forEach(order -> tableModel.addRow(
-                new Object[]{order.getOrderNumber(), order.getSubtotal()}
+                new Object[]{order.getOrderNumber(), order.getSubtotal(), order.getTotalQuantity()}
         ));
 
     }
@@ -76,11 +76,11 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
 
             },
             new String [] {
-                "Numero pedido", "subtotal"
+                "Numero pedido", "subtotal", "Cantidad"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             @Override
@@ -92,6 +92,7 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
         if (ordersTable.getColumnModel().getColumnCount() > 0) {
             ordersTable.getColumnModel().getColumn(0).setResizable(false);
             ordersTable.getColumnModel().getColumn(1).setResizable(false);
+            ordersTable.getColumnModel().getColumn(2).setResizable(false);
         }
 
         createOrderButton.setText("Crear pedido");
@@ -146,7 +147,7 @@ public class ListOrdersView extends javax.swing.JFrame implements OrderCreatedEv
     @Override
     public void onOrderCreated(Order order) {
         DefaultTableModel ordersTableModel = getTableModel(ordersTable);
-        ordersTableModel.addRow(new Object[]{order.getOrderNumber(), order.getSubtotal()});
+        ordersTableModel.addRow(new Object[]{order.getOrderNumber(), order.getSubtotal(), order.getTotalQuantity()});
     }
     // End of variables declaration//GEN-END:variables
 }
