@@ -22,7 +22,6 @@ public class DatabaseUserServiceImpl implements UserService {
 
     @Override
     public List<User> findAll() {
-        // TODO: Falta crear esto con la base de datos
-        return new ArrayList<>();
+        return userRepository.findAll();
     }
 }

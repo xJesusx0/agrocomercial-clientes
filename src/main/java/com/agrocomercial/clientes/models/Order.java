@@ -4,6 +4,7 @@ public class Order extends BaseEntity {
 
     private Long orderNumber;
     private Double subtotal;
+    private Integer totalQuantity;
 
     // FK
     private Integer idCustomer;
@@ -12,6 +13,7 @@ public class Order extends BaseEntity {
         this.orderNumber = orderNumber;
         this.idCustomer = idCustomer;
         this.subtotal = subtotal;
+        this.totalQuantity = 0;
     }
 
     public Order(Integer id, Long orderNumber, Integer idCustomer, Double subtotal) {
@@ -19,6 +21,15 @@ public class Order extends BaseEntity {
         this.orderNumber = orderNumber;
         this.idCustomer = idCustomer;
         this.subtotal = subtotal;
+        this.totalQuantity = 0;
+    }
+
+    public Order(Integer id, Long orderNumber, Integer idCustomer, Double subtotal, Integer totalQuantity) {
+        super(id);
+        this.orderNumber = orderNumber;
+        this.idCustomer = idCustomer;
+        this.subtotal = subtotal;
+        this.totalQuantity = totalQuantity;
     }
 
     public Double getSubtotal() {
@@ -43,5 +54,13 @@ public class Order extends BaseEntity {
 
     public void setIdCustomer(Integer idCustomer) {
         this.idCustomer = idCustomer;
+    }
+
+    public Integer getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(Integer totalQuantity) {
+        this.totalQuantity = totalQuantity;
     }
 }

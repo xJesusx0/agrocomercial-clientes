@@ -36,6 +36,19 @@ public class SqlServerProductRepositoryImpl implements ProductRepository {
 
 	@Override
 	public Product save(Product product) {
-		return null;
+		DatabaseOperation saveOp = connection -> {
+			final String query = "INSERT INTO productos (nombre_producto, descripcion_producto, precio) VALUES (?, ?, ?);";
+			PreparedStatement ps = connection.prepareStatement(query, java.sql.Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, product.getName());
+			ps.setString(2, product.getDescription());
+			ps.setDouble(3, product.getPrice());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			if (rs.next()) {
+				product.setId(rs.getInt(1));
+			}
+		};
+		DatabaseOperationHandler.handleOperation(saveOp);
+		return product;
 	}
 }

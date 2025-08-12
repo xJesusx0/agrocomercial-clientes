@@ -1,9 +1,8 @@
 package com.agrocomercial.clientes.context;
 
 import com.agrocomercial.clientes.services.*;
-import com.agrocomercial.clientes.services.impl.database.DatabaseProductServiceImpl;
+import com.agrocomercial.clientes.services.impl.database.*;
 import com.agrocomercial.clientes.services.impl.memory.*;
-import com.agrocomercial.clientes.services.impl.database.DatabaseUserServiceImpl;
 
 public class ServiceContext {
 
@@ -20,14 +19,13 @@ public class ServiceContext {
         RepositoryContext repositoryContext = new RepositoryContext();
 
         userService = new DatabaseUserServiceImpl(repositoryContext.getUserRepository());
-        //userService = new UserServiceImpl();
-        customerService = new CustomerServiceImpl();
-        documentTypeService = new DocumentTypeServiceImpl();
-        orderProductService = new OrderProductServiceImpl();
-        orderService = new OrderServiceImpl();
+        customerService = new DatabaseCustomerServiceImpl(repositoryContext.getCustomerRepository());
+        documentTypeService = new DatabaseDocumentTypeServiceImpl(repositoryContext.getDocumentTypeRepository());
+        orderProductService = new DatabaseOrderProductServiceImpl(repositoryContext.getOrderProductRepository());
+        orderService = new DatabaseOrderServiceImpl(repositoryContext.getOrderRepository());
         productService = new DatabaseProductServiceImpl(repositoryContext.getProductRepository());
-        administratorService = new AdministratorServiceImpl();
-        locationService = new LocationServiceImpl();
+        administratorService = new DatabaseAdministratorServiceImpl(repositoryContext.getAdministratorRepository());
+        locationService = new DatabaseLocationServiceImpl(repositoryContext.getLocationRepository());
     }
 
     public UserService getUserService() {
